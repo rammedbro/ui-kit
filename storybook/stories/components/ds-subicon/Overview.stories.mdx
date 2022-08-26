@@ -1,0 +1,39 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsSubicon from '@/ds-subicon';
+
+<Meta title="Components/DsSubicon/Overview"
+      component={DsSubicon}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsSubicon
+
+[Дизайн](https://www.figma.com/file/tPy723dWiTXJaXaFipZI1C/%F0%9F%92%A0-Icons-%7C-Components?node-id=342%3A2276)
+
+Компонент состоит из подложки и контента на этой подложке. Подложка всегда имеет фон и опционально может иметь обводку. 
+
+Контент — иконка или текст. Контент может отсутствовать. Отображается только при размерах 500 и 600 (проп `size`).
+
+Иконка и текст взаимоисключают друг друга — одновременно может быть показано либо одно, либо другое, либо ничего. Если данные переданы в оба пропа, то отобразится иконка.
+
+В качестве иконки должен быть передан компонент иконки из библиотеки `@fe/icons`:
+
+```html
+<template>
+  <ds-subicon :icon=Dot12 />
+</template>
+
+<script>
+  import { ic_s_dot as Dot12 } from '@fe-icons';
+</script>
+```
+
+В качестве значения цвета (пропы `fillColor`, `borderColor`, `textColor`, `iconColor`) нужно использовать токены из раздела [COLORS](./?path=/story/design-system-colors--colors).
+
+## Примеры
+
+[Примеры в Stories](./?path=/docs/components-dssubicon-stories--default)

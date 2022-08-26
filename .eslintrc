@@ -1,0 +1,6 @@
+{
+  "root": true,
+  "extends": [
+    "@bx-fe/eslint-config"
+  ]
+}

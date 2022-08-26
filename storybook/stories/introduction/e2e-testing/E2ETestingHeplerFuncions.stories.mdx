@@ -1,0 +1,412 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/E2E тестирование/Вспомогательные функции для тестирования"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# E2E тестирование / Вспомогательные функции для тестирования
+
+**Содержание:**
+
++ [Объект ICreateScenarioOptions](#объект-icreatescenariooptions)
++ [Функция для тестирования входящего параметра с одиночным значением](#функция-для-тестирования-входящего-параметра-с-одиночным-значением)
++ [Функция для тестирования входящего параметра со списком возможных значений](#функция-для-тестирования-входящего-параметра-со-списком-возможных-значений)
++ [Функция для тестирования слота](#функция-для-тестирования-слота)
++ [Функция для тестирования слота с ограниченной областью видимости](#функция-для-тестирования-слота-с-ограниченной-областью-видимости)
++ [Функция для кастомных сценариев](#функция-для-кастомных-сценариев)
+
+## Объект ICreateScenarioOptions
+
+Любая из следующих функций принимает в качестве параметра полный или частичный объект `options` типа
+`ICreateScenarioOptions`:
+
+```ts
+type TScenarioVueDataFn = (h: CreateElement, components: Record<string, Component>) => VNodeData;
+type TScenarioVueData = VNodeData | TScenarioVueDataFn;
+
+type TScenarioSlotsFn = (h: CreateElement, components: Record<string, Component>) => Record<string, VNode | VNodeChildren>;
+type TScenarioSlots = Record<string, VNode | VNodeChildren> | TScenarioSlotsFn;
+
+interface ICreateScenarioOptions {
+  description?: string;
+  suites?: string[];
+  vueData?: TScenarioVueData;
+  slots?: TScenarioSlots;
+}
+```
+
+* `description` - описание сценария, например, когда для тестирования параметра недостаточно одного сценария и
+нужно уточнение:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSingleValueProp('icon', {
+      image: icSInfo,
+    }, {
+      description: 'with object'
+    }),
+    createScenarioForSingleValueProp('icon', {
+      image: 'https://cdn1.ozone.ru/s3/cms/11/tfe/wc700/320_160_2.jpg'
+    }, {
+      description: 'with url'
+    }),
+  ]
+} as IComponent;
+```
+
+* `suites` - список сютов, которыми нужно ограничить использование данного сценария.<br/>
+Например, параметр `name` в примере ниже нельзя подвергнуть скриншот-тестированию, поэтому мы ограничиваемся
+только сютом *ssr*:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSingleValueProp('name', 'Some name', {
+      suites: ['ssr']
+    }),
+  ]
+} as IComponent;
+```
+
+* `vueData` - объект типа `VNodeData`, который передается вторым параметром в рендер-функцию vue:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSingleValueProp('hideHeader', true, {
+      vueData: {
+        props: {
+          items,
+          fields,
+        },
+        style: {
+          border: '1px solid red',
+        },
+      }
+    }),
+  ]
+} as IComponent;
+```
+
+Также можно передать функцию типа `TScenarioVueDataFn`, для случаев когда нужны вложенные компоненты:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSingleValueProp('checked', true, {
+      vueData: (h, components) => ({
+        props: {
+          someAdditionalProp: true,
+        },
+        scopedSlots: {
+          someScopedSlot1: scopedProps =>
+            h('div', `Используем переменные ограниченной области видимости ${scopedProps.someProp}`),
+          someScopedSlot2: () =>
+            h(components['OzImage'], 'А здесь не используем')
+        }
+      })
+    }),
+  ]
+} as IComponent;
+```
+
+* `slots` - контент для обычных слотов, т.к. через `vueData` можно добавить только слоты с ограниченной областью видимости:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForMultipleValueProp('controlPosition', CONTROL_POSITIONS, {
+      slots: {
+        default: 'Text'
+      },
+    }),
+  ]
+} as IComponent;
+```
+
+Также можно передать функцию типа `TScenarioSlotsFn`, для случаев когда нужны вложенные компоненты:
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForMultipleValueProp('labelVerticalAlign', LABEL_VERTICAL_ALIGN, {
+      slots: (h, components) => ({
+        default: h(components['OzAvatar'], 'Однокомпонентный случай'),
+        other: [
+          h(components['OzAvatar'], 'Многокомпонентный случай'),
+          h('span', 'Первая строка'),
+          h('span', 'Вторая строка')
+        ]
+      })
+    }),
+  ]
+} as IComponent;
+```
+
+## Функция для тестирования входящего параметра с одиночным значением
+
+**Тип:**
+```ts
+function createScenarioForSingleValueProp(
+  prop: string,
+  value: unknown,
+  options?: ICreateScenarioOptions,
+): IScenario
+```
+
+**Пример:**
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSingleValueProp('disabled', true),
+  ]
+} as IComponent;
+```
+
+## Функция для тестирования входящего параметра со списком возможных значений
+
+Параметр `options` может быть как стандартным объектом опций типа `ICreateScenarioOptions`, так и callback функцией,
+возвращающей частичный объект `ICreateScenarioOptions` для каждого значения из массива отдельно, остальные же опции
+в этом случае передаются четвертым параметром - `callbackCaseOptions`.
+
+**Тип:**
+```ts
+export function createScenarioForMultipleValueProp(
+  prop: string,
+  values: T[] | Record<string, T>,
+  options?:
+    ICreateScenarioOptions |
+    ((item: T, index: number) => Pick<ICreateScenarioOptions, 'vueData' | 'slots'>),
+  callbackCaseOptions?: Pick<ICreateScenarioOptions, 'description' | 'suites'>
+): IScenario
+```
+
+**Пример:**
+```ts
+import { TYPES } from '@/snack-bar/constants';
+
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForMultipleValueProp('size', SIZES, {
+      vueData: {
+          props: {
+            active: true
+          },
+        },
+      slots: (h) => ({
+        default: h('span', 'Default slot')
+      }),
+      description: 'Object options case',
+      suites: ['ssr']
+    }),
+    createScenarioForMultipleValueProp('type', TYPES, (item, index) => ({
+      vueData: {
+        props: {
+          active: true,
+          coords: {
+            top: (index * 100) + 'px',
+          }
+        },
+      },
+      slots: (h) => ({
+        default: h('span', 'Default slot')
+      })
+    }),
+    {
+      description: 'Callback options case',
+      suites: ['ssr']
+    })
+  ]
+} as IComponent;
+```
+
+## Функция для тестирования слота
+
+**Тип:**
+```ts
+type TScenarioSlotFn = (h: CreateElement, components: Record<string, Component>) => VNode | VNodeChildren;
+type TScenarioSlot = (VNode | VNodeChildren) | TScenarioSlotFn;
+
+function createScenarioForSlot(
+  slot: string,
+  value: TScenarioSlot,
+  options?: ICreateScenarioOptions,
+): IScenario
+```
+
+**Пример:**
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForSlot('default', 'Простая строка', { description: 'Standard case' }),
+    createScenarioForSlot('default', h => h('span', 'Один компонент'), { description: 'Callback case' }),
+    createScenarioForSlot(
+      'default',
+      h => [
+        h('span', 'Несколько компонентов'),
+        h('span', 'Несколько компонентов'),
+        h('span', 'Несколько компонентов')
+      ],
+      { description: 'Callback case' }
+    )
+  ]
+} as IComponent;
+```
+
+## Функция для тестирования слота с ограниченной областью видимости
+
+В качестве значения `value` необходимо передать callback функцию, третьим параметром в которой выступает объект
+с переменными ограниченной области видимости слота - `props`.
+
+**Тип:**
+```ts
+type TScenarioScopedSlotFn = (h: CreateElement, components: Record<string, Component>, props: any) => ScopedSlotReturnValue;
+
+function createScenarioForScopedSlot(
+  slot: string,
+  value: TScenarioScopedSlotFn,
+  options?: ICreateScenarioOptions,
+): IScenario
+```
+
+**Пример:**
+```ts
+const defaultOptions = {
+  vueData: {
+    props: {
+      items,
+      fields,
+    }
+  }
+};
+
+export default {
+  critical: false,
+  scenarios: [
+    createScenarioForScopedSlot(
+      'head(firstname)',
+      (h, components, props) => `Простая строка ${props.someScopedProp}`,
+      defaultOptions
+    ),
+    createScenarioForScopedSlot(
+      'head(lastname)',
+      (h, components, props) => h('span', `Один компонент ${props.someScopedProp}`),
+      defaultOptions
+    ),
+    createScenarioForScopedSlot(
+      'head(age)',
+      (h, components, props) => [
+        h('span', `Несколько компонентов ${props.someScopedProp}`),
+        h('span', `Несколько компонентов ${props.someScopedProp}`),
+        h('span', `Несколько компонентов ${props.someScopedProp}`)
+      ],
+      defaultOptions
+    )
+  ]
+} as IComponent;
+```
+
+## Функция для кастомных сценариев
+
+Данная функция является простой оберткой для соблюдения общего стиля заголовков сценариев.
+
+**Тип:**
+```ts
+function createCustomScenario(
+  type: 'prop' | 'slot',
+  name: string,
+  renderFn: TScenarioRenderFn,
+  options?: Pick<ICreateScenarioOptions, 'description' | 'suites'>
+): IScenario
+```
+
+Сюда попадают любые случаи для которых вышеописанных функций недостаточно. Например, чтобы написать сценарий для `OzPortal`
+нам понадобится элемент обертка, в которую мы поместим `OzPortal` и `OzPortalTarget`. В таком случае большинство действий
+мы придумываем и реализуем сами, а функция `createCustomScenario` лишь помогает нам составить правильный заголовок:
+
+```ts
+const renderFn = (props, defaultSlot) => (h, component, components) => h(
+  'div',
+  {
+    style: {
+      border: '1px solid black',
+      padding: '12px',
+    }
+  },
+  [
+    h(
+      components['OzPortalTarget'],
+      {
+        props: {
+          name: 'destination'
+        },
+        style: {
+          border: '1px dashed red',
+          padding: '12px',
+          marginBottom: '12px'
+        }
+      }
+    ),
+    h(
+      components['OzPortal'],
+      {
+        props,
+        style: {
+          border: '1px dashed green',
+          padding: '12px',
+        }
+      },
+      defaultSlot
+    )
+  ]
+);
+
+export default {
+  critical: false,
+  scenarios: [
+    createCustomScenario('prop', 'to', renderFn({
+      to: 'destination'
+    }, 'Этот текст должен появится в div с красным border')),
+    createCustomScenario('prop', 'disabled', renderFn({
+      to: 'destination',
+      disabled: true,
+    }, 'Этот текст должен остаться в div с зеленым border')),
+    createCustomScenario('prop', 'slim', renderFn({
+      to: 'destination',
+      disabled: true,
+      slim: true,
+    }, 'Этот текст должен быть не в div и без border'))
+  ]
+} as IComponent;
+```
+
+## Добавление вручную
+
+Также можно напрямую добавлять объекты типа `IScenario` в массив сценариев. При этом, ответственность по
+соблюдению [правил написания сценария](#правила-написания-сценариев) ложится полностью на вас.
+
+```ts
+export default {
+  critical: false,
+  scenarios: [
+    {
+      label: 'Prop - backgroundColor',
+      renderFn: (h, component, components) =>
+        h(components[component], {
+          props: {
+            backgroundColor: 'ozAccentAlert'
+          }
+        })
+    },
+  ]
+} as IComponent;
+```

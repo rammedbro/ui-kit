@@ -1,0 +1,64 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzAvatar from '@/avatar';
+
+<Meta title="Components/OzAvatar/Overview"
+      component={OzAvatar}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzAvatar
+
+[Дизайн](https://www.figma.com/file/5wRcXp9iTj3OIUizKrozz9/BX-%D0%92%D0%B8%D0%B4%D0%B6%D0%B5%D1%82%D1%8B?node-id=129%3A544)
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/avatar#avatar-atom)
+
+## Описание
+
+Компоненты для отображения аватарки пользователя или его инициалов.
+
+В зависимости от параметра `theme` меняется **размер** элемента.
+Если он не пришел, то выставляется дефолтное значение (`THEME_TYPE_MEDIUM`).
+
+Варианты `theme`:
+
+- `THEME_TYPE_X_LARGE` (112х112)
+- `THEME_TYPE_LARGE` (64х64)
+- `THEME_TYPE_MEDIUM` (40х40)
+- `THEME_TYPE_SMALL` (32х32)
+- `THEME_TYPE_X_SMALL` (24х24)
+
+## Примеры
+
+### Тема
+
+`theme`
+
+`extra small` > `small` > `medium` > `large` > `extra large`
+
+<Canvas>
+  <Story id="components-ozavatar-stories--theme-x-small"/>
+  <Story id="components-ozavatar-stories--theme-small"/>
+  <Story id="components-ozavatar-stories--theme-medium"/>
+  <Story id="components-ozavatar-stories--theme-large"/>
+  <Story id="components-ozavatar-stories--theme-x-large"/>
+</Canvas>
+
+### Фоновый цвет
+
+`backgroundColor`
+
+<Canvas>
+  <Story id="components-ozavatar-stories--background-color"/>
+</Canvas>
+
+### Инициалы
+
+`initials`
+
+<Canvas>
+  <Story id="components-ozavatar-stories--initials"/>
+</Canvas>

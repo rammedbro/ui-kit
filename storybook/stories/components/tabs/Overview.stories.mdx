@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTabs from '@/tabs';
+
+<Meta title="Components/OzTabs/Overview"
+      component={OzTabs}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTabs
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=67%3A1155)
+
+## Описание
+
+Компонент группы табов.
+
+Для тестирования в массиве табов также могут быть переданы automatizationButtonId для кнопки, automatizationTitleId для заголовка и automatizationCounterId для счётчика (если он имеется).
+
+### withBorder
+
+Для группы табов с темой 'tab' можно задать нижний бордер на всю ширину контейнера. Имеет тот же цвет заливки, что и нижний бордер самого таба
+
+Принимает true/false:
+- `false` значение по умолчанию, нижний бордер не показывается
+- `true` нижний бордер показывается
+
+## Примеры
+
+### withBorder
+
+<Canvas>
+  <Story id="components-oztabs-stories--tabs-with-border"/>
+</Canvas>

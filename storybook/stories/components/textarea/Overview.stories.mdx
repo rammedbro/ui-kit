@@ -1,0 +1,44 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTextarea from '@/transition';
+
+<Meta title="Components/OzTextarea/Overview"
+      component={OzTextarea}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTextarea
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A67116)
+
+## Описание
+
+Многострочная вариация компонента [OzInput](./?path=/docs/components-ozinput-overview--page).
+
+Компоненту можно задать фиксированный размер в виде максимальной высоты в пикселях (`height`), куда можно передать строку вида `200px`,
+или в виде максимального количества строк (`max-length`), куда нужно передать число строкой, например `maxLength="10"`.
+
+Помимо фиксированной высоты можно указать автоподстраивание (`auto-height-by-rows`),
+и тогда изначально `OzTextarea` внешне будет очень похоже на `OzInput`,
+но при заполнении компонента текстом он будет увеличиваться по высоте.
+
+По умолчанию комопонент имеет размер (`size`) **m**.
+
+## Примеры
+
+### Default
+
+<Canvas>
+  <Story id="components-oztextarea-stories--default" />
+</Canvas>
+
+### Auto height by rows
+
+<Canvas>
+  <Story id="components-oztextarea-stories--auto-height-by-rows" />
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-oztextarea-stories--default)

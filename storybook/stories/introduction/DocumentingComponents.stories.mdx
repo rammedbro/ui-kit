@@ -1,0 +1,193 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Документирование компонентов"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# Документирование компонентов
+
+**Содержание:**
++ [Рекомендации](#рекомендации)
++ [Кастомные возможности](#кастомные-возможности)
+  * [@default](#default)
+  * [@values](#values)
+  * [@model](#model)
+  * [@control](#control)
+  * [@inject](#inject)
+<br/>
+
+## Рекомендации
+
++ Строго следовать документации [vue-docgen-api](https://vue-styleguidist.github.io/docs/Documenting.html)
++ Имена событий писать с префиксом `on` (например `onClick`)
++ Выносить код генерации событий в отдельные методы:
+
+```html
+<template>
+  // Плохо
+  <div @click="$emit('onClick')">Text</div>
+
+  // Хорошо
+  <div @click="click"></div>
+</template>
+
+<script>
+  export default {
+    methods: {
+      click() {
+        // Документирование
+        this.$emit('onClick');
+      }
+    }
+  }
+</script>
+```
++ Полностью описывать тип входящих параметров компонента согласно
+[документации Vue](https://vuejs.org/v2/guide/components-props.html#Prop-Validation)
++ Включать в имена свойств слова (как правило, тип данных), которые помогут автоматически определить `control`
+для этого свойства. Например, `color` в свойстве `backgroundColor` поможет определить `ColorPicker`
+
+## Кастомные возможности
+
+Парсинг документаци **vue-docgen-api** является статическим, поэтому он не сможет прочитать значения переменных
+или выполнить код, который вы установили в качестве значения какого-либо свойства компонента.
+Тем не менее жестко прописывать такие значения, а не брать их из каких-либо общих файлов, - не выход. Но для
+авто-парсинга документации это единственная возможность, поэтому хардкодить мы будем не значения свойств, а
+его документацию. Для чего были реализованы кастомные тэги или расширен функционал существующих.
+
+### @default
+
+Чтобы была возможность в коде ссылаться на переменную и при этом сохранить парсинг документации рекомендуется
+использовать тэг `@default`, в описании которого необходимо указать конкретное значение, а не ссылку:
+
+_*Указывать только для пропсов-массивов_
+
+```js
+import { TAB_THEMES } from './themes';
+
+export default {
+   props: {
+    /**
+     * Тема
+     * @values primary, tab, tag
+     * @default tab
+     */
+    theme: {
+      type: String,
+      default: TAB_THEMES.tab,
+      validator: v => Object.values(TAB_THEMES).includes(v)
+    }
+  }
+}
+```
+
+### @values
+
+Аналогично `@default,` в описании тэга `@values` необходимо указать конкретные значение, а не ссылку:
+
+_*Указывать для массивов, и любых значений, которые берутся из переменной. Допустим из константы проекта, когда ее устанавливают в качестве значения по умолчанию какого-то пропса._
+
+```js
+import { TAB_THEMES } from './themes';
+
+export default {
+   props: {
+    /**
+     * Тема
+     * @values primary, tab, tag
+     * @default tab
+     */
+    theme: {
+      type: String,
+      default: TAB_THEMES.tab,
+      validator: v => Object.values(TAB_THEMES).includes(v)
+    }
+  }
+}
+```
+
+### @model
+
+По умолчанию **vue-docgen-api** меняет имя свойства типа `v-model` в документации на `v-model,` из-за чего становится
+не ясным его оригинальное имя. Чтобы избежать такого поведения можно указать оригинальное имя свойства в
+описании тэга `@model`:
+
+```js
+export default {
+  model: {
+    prop: 'checked',
+    event: 'change'
+  },
+  props: {
+    /**
+     * Определяет выбран ли элемент
+     * @model checked
+     */
+    checked: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+```
+
+### @control
+
+Позволяет указать [тип]((https://storybook.js.org/docs/react/essentials/controls#annotation)) *input* для песочницы
+на странице компонента в storybook. Полезно для случаев, когда нельзя автоматически предположить тип из имени свойства
+как в примере ниже:
+
+```js
+export default {
+  name: 'OzDatePicker',
+  props: {
+    /**
+     * Выбранная дата
+     * @model value
+     * @control date
+     */
+    value: {
+      type: Number,
+      default: Date.now()
+    }
+  }
+}
+```
+
+### @inject
+
+Поддержка документации для `inject`, которую возможно указать только в корневой документации компонента
+(комментарий перед `export default`). Следует оформлять согласно [jsdoc](https://jsdoc.app/tags-param.html).
+
+```js
+/**
+ * @inject {boolean} [alternativeCdn=false] - Включает использование альтернативного cdn
+ * @inject {boolean} [useWebP=false] - Включает загрузку изображений в формате webp в тех браузерах, где он поддерживается
+ * @inject {boolean} [isMobile=false] - Поддержка мобильного варианта картинок через srcset
+ */
+export default {
+  name: 'OzImage',
+  functional: true,
+  inject: {
+    alternativeCdn: {
+      default: false
+    },
+    useWebP: {
+      default: false
+    },
+    isMobile: {
+      default: false
+    }
+  }
+}
+```
+
+## Полезные ссылки:
++ [Как storybook парсит документацию](https://storybook.js.org/docs/vue/writing-docs/doc-blocks)
++ [Как документировать vue код](https://vue-styleguidist.github.io/docs/Documenting.html)
++ [Как описывать входящие параметры во vue](https://vuejs.org/v2/guide/components-props.html#Prop-Validation)

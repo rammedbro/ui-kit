@@ -1,0 +1,136 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzInput from '@/input';
+
+<Meta title="Components/OzInput/Overview"
+      component={OzInput}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzInput
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=4235%3A6200)
+
+## Описание
+
+Компонент текстового поля ввода. Однострочный. Не имеет своей валидации, за исключением версии с переданным prop `mask`, который ограничивает ввод согласно маске.
+Может иметь иконку, которая эмитит собственное событие клика `iconClick`.
+
+По умолчанию имеет размер **m**  (`size="m"`).
+
+[Многострочная версия](./?path=/docs/components-oztextarea-overview--page)
+
+## Примеры
+
+### Размеры
+
+`size`
+
+#### s
+
+<Canvas>
+  <Story id="components-ozinput-stories--size-s"/>
+</Canvas>
+
+#### m
+
+<Canvas>
+  <Story id="components-ozinput-stories--size-m"/>
+</Canvas>
+
+#### l
+
+<Canvas>
+  <Story id="components-ozinput-stories--size-l"/>
+</Canvas>
+
+#### xl
+
+<Canvas>
+  <Story id="components-ozinput-stories--size-xl"/>
+</Canvas>
+
+#### xxl
+
+<Canvas>
+  <Story id="components-ozinput-stories--size-xxl"/>
+</Canvas>
+
+### Маска ввода
+
+* Правила текстовой маски описаны в `./mask.js` и применяются в основном для ввода числовых значений.
+* Событие `input()` возвращает два значения: 1-ое - текст без маски, 2-ое - текст с маской.
+* Маска реактивна: при изменении маски, значение в самом поле ввода также изменится.
+
+<Canvas>
+  <Story id="components-ozinput-stories--mask"/>
+</Canvas>
+
+### С индикатором загрузки
+
+`loading`
+
+<Canvas>
+  <Story id="components-ozinput-stories--loading"/>
+</Canvas>
+
+### С иконкой
+
+`icon`
+
+<Canvas>
+  <Story id="components-ozinput-stories--icon"/>
+</Canvas>
+
+### Невалидное состояние
+
+`has-error` только подсвечивает рамку. Для отображения текста ошибки нужно использовать [OzField](./?path=/docs/components-ozinput-overview--page)
+
+<Canvas>
+  <Story id="components-ozinput-stories--has-error"/>
+</Canvas>
+
+### Максимальная длинна вводимых данных
+
+`max-length`
+
+<Canvas>
+  <Story id="components-ozinput-stories--max-length"/>
+</Canvas>
+
+### С label внутри
+
+`inside-label`
+
+<Canvas>
+  <Story id="components-ozinput-stories--inside-label"/>
+</Canvas>
+
+### С placeholder
+
+`placeholder`
+
+⚠️ У размера xl при фокусировке placeholder смещается вверх, поэтому по дизайну там есть увеличенний верхний отступ.
+
+<Canvas>
+  <Story id="components-ozinput-stories--placeholder-size-s"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-ozinput-stories--placeholder-size-m"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-ozinput-stories--placeholder-size-l"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-ozinput-stories--placeholder-size-xl"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-ozinput-stories--placeholder-size-xxl"/>
+</Canvas>

@@ -1,0 +1,81 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzRating from '@/rating';
+
+<Meta title="Components/OzRating/Overview"
+      component={OzRating}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzRating
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=67%3A1151)
+
+## Описание
+
+Компонент рейтинга. Используется для отображения рейтинка товара, а так же для проставления оценки пользователем.
+Имеет ряд настроек и состояний, которые настраиваются пропсами:
+
+- `value` задает значение рейтинга
+- `size` настраивает размер отборажаемого элемента
+- `readOnly` отменяет кликабельность и показывает, что рейтинг находится в режиме чтения
+- `withAnimation` анимирует элемент
+- `altText` позволяет отразить кол-во отзывов на товар, возможен только в режиме `readOnly`
+- `reviewCount` задает кол-во отзывов на товар
+
+## Примеры
+
+### По умолчанию
+
+<Canvas>
+  <Story id="components-ozrating-stories--default" />
+</Canvas>
+
+### Размеры
+
+#### s
+
+<Canvas>
+  <Story id="components-ozrating-stories--size-s" />
+</Canvas>
+
+#### m
+
+<Canvas>
+  <Story id="components-ozrating-stories--size-m" />
+</Canvas>
+
+#### l
+
+<Canvas>
+  <Story id="components-ozrating-stories--size-l" />
+</Canvas>
+
+#### xl
+
+<Canvas>
+  <Story id="components-ozrating-stories--size-xl" />
+</Canvas>
+
+### Режим только для чтения (без отображения кол-ва отзывов)
+
+<Canvas>
+  <Story id="components-ozrating-stories--read-only" />
+</Canvas>
+
+### Режим только для чтения (с отображением кол-ва отзывов)
+
+<Canvas>
+  <Story id="components-ozrating-stories--review-count" />
+</Canvas>
+
+### Анимация
+
+Анимация для привлечения внимания `withAnimation`, доступна только для режима НЕ `readOnly`.
+
+<Canvas>
+  <Story id="components-ozrating-stories--with-animation" />
+</Canvas>

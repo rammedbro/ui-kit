@@ -1,0 +1,168 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsBadge from '@/ds-badge';
+
+<Meta title="Components/DsBadge/Overview"
+      component={DsBadge}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsBadge
+
+[Дизайн](https://www.figma.com/file/X1XPIwZy76RLSQWt72yhFj/%F0%9F%92%A0-Buttons-%7C-Components?node-id=312%3A18110)
+
+## Описание
+
+Компонент отображения бейджей.
+Высота компонента зависит от пропса `size`.
+Ширина бейджа зависит от контента внутри или от ширины родителя.
+
+## Примеры
+
+### По умолчанию
+
+Пропс `label` - текст на бейджe.
+По умолчанию: размер `500`, тема `neutral`
+
+<Canvas>
+  <Story id="components-dsbadge-stories--default"/>
+</Canvas>
+
+### LeftGraphic
+Слева от `label` может быть иконка размера  `s` с постфиксом `_compact` из бибилиотеки [fe-icons](http://icons.prod.a.o3.ru/?path=/story/icon--all-icons)
+Ставится через пропс  `leftGraphic`
+
+<Canvas>
+  <Story id="components-dsbadge-stories--left-graphic"/>
+</Canvas>
+
+### Clickable
+
+Бейдж может быть кликабельным или нет, за это отвечает пропс `isClickable`. В кликабельном состоянии справа от `label` всегда находится иконка шеврона. Другой иконки там быть не может.
+
+<Canvas>
+  <Story id="components-dsbadge-stories--theme-neutral"/>
+</Canvas>
+
+### Size и Theme
+
+Есть несколько вариантов покраски Primary и Secondary. Так же есть три размера `400`, `500` и `600`.
+
+#### Neutral (default)
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-neutral"/>
+  <Story id="components-dsbadge-stories--theme-neutral"/>
+  <Story id="components-dsbadge-stories--size-600-neutral"/>
+</Canvas>
+
+#### Promo
+
+##### Primary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-promo-primary"/>
+  <Story id="components-dsbadge-stories--theme-promo-primary"/>
+  <Story id="components-dsbadge-stories--size-600-promo-primary"/>
+</Canvas>
+
+##### Secondary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-promo-secondary"/>
+  <Story id="components-dsbadge-stories--theme-promo-secondary"/>
+  <Story id="components-dsbadge-stories--size-600-promo-secondary"/>
+</Canvas>
+
+#### Discount
+
+##### Primary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-discount-primary"/>
+  <Story id="components-dsbadge-stories--theme-discount-primary"/>
+  <Story id="components-dsbadge-stories--size-600-discount-primary"/>
+</Canvas>
+
+##### Secondary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-discount-secondary"/>
+  <Story id="components-dsbadge-stories--theme-discount-secondary"/>
+  <Story id="components-dsbadge-stories--size-600-discount-secondary"/>
+</Canvas>
+
+
+#### New
+
+##### Primary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-new-primary"/>
+  <Story id="components-dsbadge-stories--theme-new-primary"/>
+  <Story id="components-dsbadge-stories--size-600-new-primary"/>
+</Canvas>
+
+##### Secondary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-new-secondary"/>
+  <Story id="components-dsbadge-stories--theme-new-secondary"/>
+  <Story id="components-dsbadge-stories--size-600-new-secondary"/>
+</Canvas>
+
+#### Premium
+
+##### Primary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-premium-primary"/>
+  <Story id="components-dsbadge-stories--theme-premium-primary"/>
+  <Story id="components-dsbadge-stories--size-600-premium-primary"/>
+</Canvas>
+
+##### Secondary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-premium-secondary"/>
+  <Story id="components-dsbadge-stories--theme-premium-secondary"/>
+  <Story id="components-dsbadge-stories--size-600-premium-secondary"/>
+</Canvas>
+
+#### Credit
+
+##### Primary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-credit-primary"/>
+  <Story id="components-dsbadge-stories--theme-credit-primary"/>
+  <Story id="components-dsbadge-stories--size-600-credit-primary"/>
+</Canvas>
+
+##### Secondary
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-credit-secondary"/>
+  <Story id="components-dsbadge-stories--theme-credit-secondary"/>
+  <Story id="components-dsbadge-stories--size-600-credit-secondary"/>
+</Canvas>
+
+#### Rating
+У бейджа с данной темой слева от `label` всегда будет иконка звезды рейтинга
+
+<Canvas>
+  <Story id="components-dsbadge-stories--size-400-rating"/>
+  <Story id="components-dsbadge-stories--theme-rating"/>
+  <Story id="components-dsbadge-stories--size-600-rating"/>
+</Canvas>
+
+### Long label
+Если `label` не помещается в бейдж, он транкейтится в конце троеточием.
+В desktop при наведении на название появляется системный тултип, в котором отображается полный текст.
+
+<Canvas>
+  <Story id="components-dsbadge-stories--long-label"/>
+</Canvas>

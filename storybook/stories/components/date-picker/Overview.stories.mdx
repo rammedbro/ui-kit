@@ -1,0 +1,38 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzDatePicker from '@/date-picker';
+
+<Meta title="Components/OzDatePicker/Overview"
+      component={OzDatePicker}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzDatePicker
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=15927%3A53426)
+
+## Описание
+
+Компонент календарика.
+
+Передать в модель ему можно как просто `new Date()`, так и дату в `unix time`.
+
+Наверх календарь эммитит `unix time`.
+
+## Примеры
+
+### По умолчанию
+
+<Canvas>
+  <Story id="components-ozdatepicker-stories--default"/>
+</Canvas>
+
+### Границы возможных значений
+
+<Canvas>
+  <Story id="components-ozdatepicker-stories--from"/>
+  <Story id="components-ozdatepicker-stories--to"/>
+</Canvas>

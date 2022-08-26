@@ -1,0 +1,142 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsImageRatio from '@/ds-image-ratio';
+
+<Meta title="Components/DsImageRatio/Overview"
+      component={DsImageRatio}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsImageRatio
+
+## Описание
+
+Компонент изображения с дополнительным функционалом. Возвращает компонент DsImage в обертке.
+Имеет все те же пропсы, что и DsImage + три новых: `ratio`, `width` и `backgroundColor`.
+
+### Примеры
+
+#### Default
+По деволту `ratio = fill`. Компонент всегда будет пропорциональным и занимать размер родителя.
+В данном примере родителю задана ширина `300px`. Картинка заняла заданную ширину, а по высоте растянулась сохраняя пропорции.
+
+<Canvas>
+  <Story id="components-dsimageratio-stories--background-color"/>
+</Canvas>
+
+Если родителю будет заданы размеры меньше размера картинки, то она обрежется, сохраняя пропорции.
+
+<Canvas>
+  <Story id="components-dsimageratio-stories--default-with-height-container"/>
+</Canvas>
+
+#### Width
+Компоненту можно напрямую задать ширину через пропс `width`.
+В этом случае компонент будет иметь фиксированную ширину, а высота будет растягиваться сохраняя пропорции.
+В примере задана ширина `200px`.
+
+<Canvas>
+  <Story id="components-dsimageratio-stories--width"/>
+</Canvas>
+
+#### Ratio + Width
+Через пропс `ratio` можно задать пропорции изображению.
+Если использовать данный пропс в связке с `width`, тогда размеры компонента будут высчитываться в скрипте и фиксироваться и изменения размеров родителя никак не повлияют на изображение.
+В примерах ниже родителю задана ширина `300px`. (для наглядности через консоль попробуйте изменить размер и добавить высоту)
+
+##### 1:1 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-1-on-1-with-width"/>
+</Canvas>
+
+##### 2:1 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-2-on-1-with-width"/>
+</Canvas>
+
+##### 2:3 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-2-on-3-with-width"/>
+</Canvas>
+
+##### 3:1 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-1-with-width"/>
+</Canvas>
+
+##### 3:2 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-2-with-width"/>
+</Canvas>
+
+##### 3:4 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-4-with-width"/>
+</Canvas>
+
+##### 4:3 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-4-on-3-with-width"/>
+</Canvas>
+
+##### 5:2 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-5-on-2-with-width"/>
+</Canvas>
+
+##### 16:9 + width: 250px
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-16-on-9-with-width"/>
+</Canvas>
+
+#### Ratio
+Если использовать данный пропс без `width`, тогда ширина компонента будет зависеть от родителя, а пропорция будет задаваться через псевдоэлемент. Изменения размеров родителя повлияют на изображение.
+В примерах ниже родителю задана ширина `300px`. (для наглядности через консоль попробуйте изменить размер и добавить высоту)
+
+##### 1:1
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-1-on-1"/>
+</Canvas>
+
+##### 2:1
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-2-on-1"/>
+</Canvas>
+
+##### 2:3
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-2-on-3"/>
+</Canvas>
+
+##### 3:1
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-1"/>
+</Canvas>
+
+##### 3:2
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-2"/>
+</Canvas>
+
+##### 3:4
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-3-on-4"/>
+</Canvas>
+
+##### 4:3
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-4-on-3"/>
+</Canvas>
+
+##### 5:2
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-5-on-2"/>
+</Canvas>
+
+##### 16:9
+<Canvas>
+  <Story id="components-dsimageratio-stories--ratio-16-on-9"/>
+</Canvas>

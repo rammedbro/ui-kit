@@ -1,0 +1,32 @@
+@font-face {
+  font-family: 'GTEestiPro';
+  font-weight: 700;
+  font-display: swap;
+  src: url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Bold.woff2') format('woff2'),
+    url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GTEestiPro';
+  font-weight: 500;
+  font-display: swap;
+  src: url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Medium.woff2') format('woff2'),
+    url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Medium.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GTEestiPro';
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+  src: url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Medium-Italic.woff2') format('woff2'),
+    url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Medium-Italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'GTEestiPro';
+  font-weight: 400;
+  font-display: swap;
+  src: url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Regular.woff2') format('woff2'),
+    url('//cdn1.ozone.ru/graphics/fonts/web/optimized/GT-Eesti-Pro-Display-Regular.woff') format('woff');
+}

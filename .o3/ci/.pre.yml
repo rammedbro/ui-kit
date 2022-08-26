@@ -1,0 +1,34 @@
+# Global cache policy.
+# You can rewrite it in any job.
+# In any job except install-dependencies we will only download cache (pull policy).
+# The cache key is a SHA computed from the most recent commits that changed each listed file.
+cache:
+  key:
+    files:
+      - yarn.lock
+  paths:
+    - node_modules
+  policy: pull
+
+install-dependencies:
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  stage: .pre
+  except:
+    - tags
+  cache:
+    key:
+      files:
+        - yarn.lock
+    paths:
+      - node_modules
+    policy: pull-push
+  script:
+    - yarn ci
+
+slack report:
+  stage: .pre
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  only:
+    - tags
+  script:
+    - node ./.o3/utils/reporter/ready-to-prod-report.js

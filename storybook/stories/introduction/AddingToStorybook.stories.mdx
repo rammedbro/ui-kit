@@ -1,0 +1,213 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Добавление в storybook"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# Добавление в storybook
+
+**Содержание:**
++ [Файл Overview](#файл-overview)
++ [Файл Properties](#файл-properties)
++ [Файл Events](#файл-events)
++ [Файл Stories](#файл-stories)
+* [Основной компонент](#основной-компонент)
+* [Базовый шаблон истории](#базовый-шаблон-истории)
+<br />
+
+## Введение
+
+В папке `storybook/stories/components` создаем папку со следующими файлами:
++ Overview.stories.mdx
++ Properties.stories.js
++ Stories.stories.js
++ Events.stories.js (*необязательный*)
+
+Каждый файл должен описывать свою принадлежность (через экспорт по умолчанию или тэг `<Meta/>`) в свойстве `title`
+по шаблону `Components/<ComponentName>/<FileName>`
+
+Все, что не выходит за рамки общих случаев, должно оформляться так же, как в любом существующем описании компонента в
+данном *storybook*.
+Рекомендуется полностью копировать файлы и изменять только целевой компонент и его истории.
+
+## Файл Overview
+
+Файл Overview представляет собой смесь языка разметки *markdown* и *jsx*. и содежит:
++ Описание основных принципов работы компонента
++ Примеры использования
++ Пользовательские сценарии
++ Ссылки на дизайны и контракты *(если компонент имеет их в [bx/contracts](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto))*
+
+Позволяет добавлять блоки `<Canvas>`, в которые можно добавлять истории ссылаясь на них через `<Story id="story-id">`.
+
+**Полезные ссылки:**
++ [Как писать истории с использованием MDX](https://storybook.js.org/docs/vue/writing-docs/mdx)
++ [Варианты написания историй](https://github.com/storybookjs/storybook/blob/master/addons/docs/docs/recipes.md)
+
+## Файл Properties
+Таблица параметров компонента, включающая описание:
++ Входящих параметров `props`
++ Генерируемых событий `$emit`
++ Доступных слотов `<slot>`
+
+Эти данные парсятся автоматически из кода компонента, задокументированного согласно синтаксису
+[vue-docgen-api](https://vue-styleguidist.github.io/docs/Docgen.html). Данные,
+которые спарсить не удалось, придется описывать вручную в `argTypes` в файле [Stories.stories.js](#файл-stories).
+
+Для успешного парсинга необходимо следовать указаниям из статьи [Документирование компонентов](./?path=/story/introduction-документирование-компонентов--page).
+
+С версии 6.3.0 storybook отключили автоматическую установку значений по умолчанию, поэтому теперь, чтобы установить
+значения по умолчанию для компонента, в `args` также необходимо добавить результат вызова кастомной функции `sbGetComponentDefaultValues`:
+
+```js
+import OzAvatar from '@/avatar';
+import Component from './Stories.stories';
+import { sbGetComponentDefaultValues } from '~storybook/utils';
+
+export default {
+  ...Component,
+  title: 'Components/OzAvatar/Properties',
+  args: sbGetComponentDefaultValues(OzAvatar),
+  parameters: {
+    viewMode: 'docs',
+    controls: {
+      disable: true
+    },
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    }
+  }
+};
+```
+
+## Файл Events
+Песочница в которой можно посмотреть генерируемые события — вкладка **Actions**. Является необязательным файлом и
+нужен только в случае, если у компонента есть события.
+
+**Полезные ссылки:**
++ [Вкладка Actions](https://storybook.js.org/docs/vue/essentials/actions)
+
+## Файл Stories
+Данный файл содержит все **истории** компонента. Истории в *storybook* — это ключевые состояния компонента, которые мы
+хотим отразить в нашей документации. Все истории пишутся в этом файле, откуда потом они могут быть вставлены в любой
+другой файл *storybook*.
+
+Файл включает в себя:
++ Основной компонент
++ Базовый шаблон истории
++ Истории
+
+### Основной компонент
+
+Является объектом экспортируемым по умолчанию
+
+Основные параметры:
++ `title` — имя компонента по шаблону `Components/<ComponentName>/Stories`
++ `component` — Vue компонент с которым работаем
++ `argTypes` — [объект](https://storybook.js.org/docs/vue/api/argtypes) с описаниями параметров компонента,
+которые не удалось спарсить.
++ `args` - аргументы, которые будут переданы во все истории.
++ `parameters` - различные параметры, в основном работающие с отображением страницы
+
+**Пример:**
+```js
+import OzTag from '@/tag';
+import DocsTemplate from '~storybook/templates/Stories.mdx';
+
+export default {
+  title: 'Components/OzTag/Stories',
+  component: OzTag,
+  args: {
+    text: 'Text'
+  },
+  parameters: {
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: {
+        hidden: true
+      }
+    },
+    docs: {
+      page: DocsTemplate
+    }
+  }
+};
+```
+
+**Полезные ссылки:**
++ [Компонентный формат историй CSF](https://storybook.js.org/docs/vue/writing-stories/introduction#component-story-format)
++ [Аргументы на уровне компонента](https://storybook.js.org/docs/vue/writing-stories/introduction#component-story-format)
++ [Параметры на уровне компонента](https://storybook.js.org/docs/vue/writing-stories/introduction#component-story-format)
+
+### Базовый шаблон истории
+
+Функция, принимающая два аргумента `args` и `context` и возвращающая Vue компонент.
+
+Некоторое из того, что содержится в `context`:
++ `args` - аргументы истории
++ `argTypes` - описания входящих параметров истории
++ `argsGrouped` - данные компонента, отсортированные по категориям: `props, events, slots, inject`.
++ `parameters` - параметры истории
+
+**Пример:**
+```js
+const Default = (args, { parameters, argsGrouped }) => ({
+  components: { OzTag },
+  provide: argsGrouped.inject,
+  props: Object.keys(parameters.args),
+  data: () => ({ argsGrouped }),
+  template: `
+    <oz-tag v-bind="$props" v-on="argsGrouped.events">
+      {{ argsGrouped.slots.default }}
+
+      <template v-slot="someNamedSlot">
+        {{ argsGrouped.slots.someNamedSlot }}
+      </template>
+    </oz-tag>
+  `
+});
+```
+
+**Полезные ссылки:**
++ [Базовый шаблон историй](https://storybook.js.org/docs/vue/writing-stories/introduction#how-to-write-stories)
+
+### Истории
+
+Является частным случаем работы компонента. Для регистрации истории ее нужно экспортировать. Имена историй рекомендуется
+писать в *PascalCase*.
+
+**Пример**:
+
+```js
+export const Primary = Template.bind({});
+Primary.args = {
+  theme: 'primary',
+  text: 'Tag'
+};
+
+export const PrimaryCounter = Template.bind({});
+PrimaryCounter.args = {
+  ...Primary.args,
+  text: 'Tag counter',
+  counter: '10'
+};
+```
+**Полезные ссылки:**
++ [Что такое история](https://storybook.js.org/docs/vue/get-started/whats-a-story)
++ [Как писать истории](https://storybook.js.org/docs/vue/writing-stories/introduction)
++ [Аргументы истории](https://storybook.js.org/docs/vue/writing-stories/args)
+
+## Дополнительно
+
+**Полезные ссылки:**
++ [Документация storybook](https://storybook.js.org/docs/vue/get-started/introduction)
++ [Асинхронные операции в историях](https://storybook.js.org/docs/vue/writing-stories/loaders)
++ [Изменение верстки страницы документации](https://storybook.js.org/docs/vue/writing-docs/docs-page)
++ [Поддержка VueTypes](https://github.com/storybookjs/storybook/issues/12333)

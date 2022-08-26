@@ -1,0 +1,35 @@
+.base: &base
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  stage: build
+  needs:
+    - install-dependencies
+
+build:lib:
+  <<: *base
+  script:
+    - yarn build
+  artifacts:
+    paths:
+      - dist/lib/
+  except:
+    - tags
+
+build:storybook:
+  <<: *base
+  script:
+    - yarn storybook:build
+  artifacts:
+    paths:
+      - dist/storybook/
+  except:
+    - tags
+
+build:e2e-child-pipeline-config:
+  <<: *base
+  script:
+    - yarn e2e:generate-child-pipeline-config
+  artifacts:
+    paths:
+      - dist/e2e-child-pipeline-config.yml
+  only:
+    - /^release\/.+$/

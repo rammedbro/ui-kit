@@ -1,0 +1,72 @@
+.review: &review
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  stage: tests
+  needs:
+    - install-dependencies
+  except:
+    - tags
+    - master
+
+review:lint-js:
+  <<: *review
+  script:
+    - yarn lint:js
+
+review:lint-css:
+  <<: *review
+  script:
+    - yarn lint:css
+
+review:typescript:
+  <<: *review
+  script:
+    - yarn types
+
+review:check-version:
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  stage: tests
+  needs:
+    - install-dependencies
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"
+      when: always
+    - if: $CI_COMMIT_BRANCH =~ /^release\/.+$/
+      when: always
+  script:
+    - node .o3/utils/versioning/validate-version.js
+
+review:compare-bundle-size:
+  <<: *review
+  needs: ["build:lib"]
+  script:
+    - node ./.o3/utils/bundle-size/compare.js
+  except:
+    - tags
+    - master
+
+e2e:trigger-child-pipeline:
+  stage: tests
+  needs:
+    - build:e2e-child-pipeline-config
+  trigger:
+    include:
+      - artifact: dist/e2e-child-pipeline-config.yml
+        job: build:e2e-child-pipeline-config
+    strategy: depend
+  only:
+    - /^release\/.+$/
+
+unit:test:
+  <<: *review
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - dist/unit/report/junit.xml
+  variables:
+    NODE_OPTIONS: --max_old_space_size=50000
+  script:
+    - yarn unit:test:coverage
+  except:
+    - tags

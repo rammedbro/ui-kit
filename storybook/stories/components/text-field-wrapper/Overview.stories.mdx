@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTextFieldWrapper from '@/text-field-wrapper';
+
+<Meta title="Components/OzTextFieldWrapper/Overview"
+      component={OzTextFieldWrapper}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTextFieldWrapper
+
+## Описание
+
+Внутренний компонент [OzInput](./?path=/docs/components-ozinput-overview--page) и [OzSelect](./?path=/docs/components-ozselect-overview--page) - само текстовое поле.
+Предоставляет доступ ко всем внутренним элементам полей ввода.
+
+- `has-value` управляет скрытием/показом плейсхолдера
+- `has-error` перекрашивает рамку поля ввода в красный цвет
+- `size` соответсвует размером полей ввода
+- `placeholder` задаёт подпись
+- `disabled` отключает компонент, делает его недоступным для редактирования
+- `focused` устанавливает фокус в поле ввода
+- `loading` определяет показывать ли элемент загрузки
+- `icon` принимает компонент иконки
+- `loading-margin` управляет внешним элементом загрузки
+- `inside-label` фиксирует label в начале поля ввода
+- `test-info` задаёт тестовый id иконке в инпуте
+
+## Примеры
+
+[Примеры в Stories](./?path=/docs/components-oztextfieldwrapper-stories--default)

@@ -1,0 +1,28 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzPortalMounting from '@/portal/mounting';
+
+<Meta title="Components/OzPortalMounting/Overview"
+      component={OzPortalMounting}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPortalMounting
+
+Компонент `OzMountingPortal` расширяет поведение `OzPortal`, а так же добавляет `OzPortalTarget` к DOM-элементу - `mountTo`.
+Он обеспечивает очистку и удаление `OzPortalTarget` при его уничтожении.
+В целом, компонент ведёт себя, как обычный `OzPortal`.
+
+Ссылка на документацию: [portal-vue.linusb.org/api/mounting-portal](https://portal-vue.linusb.org/api/mounting-portal.html)
+
+* Все пропсы в компоненте `OzMountingPortal` не динамические! То есть после инициализации, изменить их нельзя.
+Устанавливайте `v-if` на `OzPortal`, чтобы не терять последовательность добавления компонента в
+dom-элемент, если у вас есть вложенные модалки (модалка-в-модалке).
+В критической ситуации, можно попробовать передать `multiple: true` и назначить последовательность через `order`
+
+<Canvas>
+  <Story id="components-ozportalmounting-stories--default"/>
+</Canvas>

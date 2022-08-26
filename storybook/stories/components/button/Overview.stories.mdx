@@ -1,0 +1,236 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzButton from '@/tag';
+
+<Meta title="Components/OzButton/Overview"
+      component={OzButton}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzButton
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=67%3A999)
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/web/button#atomfrontendbutton)
+
+## Описание
+
+Компонент кнопки.
+
+### Принципы дизайна
+
+- Минимальная ширина текстовых кнопок прямо зависит от их высоты. Для каждого размера нужно будет задать min-width, помимо внутренних паддингов. У кнопок с иконками внутри правила будут другие.
+- Иногда кнопки могут располагаться во всю ширину какого-то блока, тогда мы просто распепячиваем их на 100% по ширине. Если вдруг это окажется меньше чем минимальная ширина для данной высоты кнопки - нужно взять кнопку меньшей высоты и указать на это дизайнеру
+- Основными цветами кнопок мы считаем oz-blue (условно "голубая") и oz-white-2 (условно "белая"). В какой-то момент может понадобиться добавить ещё цветов, в таком случае дизайнер должен предоставить соответствующий цвет для состояния **Hover**.
+- На кнопках мы используем жирное (bold) начертание шрифта из группы Display (подробнее в цеплине)
+
+### Анимации
+
+- Переходы между состояниями элементов должны быть не резкими, а плавными, в течение .2-.3 секунды
+- Состояние "Loading" получается простой анимацией всего элемента — с периодичностью ~.5 секунды плавно меняем opacity исходного состояния от 1 до .8 и обратно. В этом состоянии элемент не должен реагировать на курсор и нажатия ****Цифры уточним ещё после
+
+## Примеры
+
+### По умолчанию
+
+По умолчанию кнопка умеет размер `size="m"`, цвет `theme="primary"` и тип `type="button"`.
+
+<Canvas>
+  <Story id="components-ozbutton-stories--default"/>
+</Canvas>
+
+### Размер
+
+`size`
+
+Кнопке можно задать размер. В соотвествии с макетом мы имеет 4 размера кнопки.
+
+#### m
+
+Цеплин <https://zpl.io/bJGqxq3>
+
+Минимальная ширина кнопки для этой высоты — 96px (3 высоты).
+
+Свойство   | Значение
+-|-
+min-width  | 96px
+min-height | 32px
+font-size  | 14px
+padding    | 7px 12px
+
+<Canvas>
+  <Story id="components-ozbutton-stories--size-m"/>
+</Canvas>
+
+#### l
+
+Цеплин <https://zpl.io/amMBK6Q>
+
+Минимальная ширина кнопки **L** — 3 высоты.
+
+Свойство   | Значение
+-|-
+min-width  | 120px
+min-height | 40px
+font-size  | 16px
+padding    | 10px 12px
+
+<Canvas>
+  <Story id="components-ozbutton-stories--size-l"/>
+</Canvas>
+
+#### xl
+
+Цеплин <https://zpl.io/2ERwqOM>
+
+Минимальная ширина кнопки **XL** - 4 высоты
+
+Свойство   | Значение
+-|-
+min-width  | 192px
+min-height | 48px
+font-size  | 16px
+padding    | 14px 20px
+
+<Canvas>
+  <Story id="components-ozbutton-stories--size-xl"/>
+</Canvas>
+
+#### xxl
+
+Цеплин <https://zpl.io/2pMoyDj>
+
+Минимальная ширина кнопки **XXL** - 4 высоты
+
+Свойство   | Значение
+-|-
+min-width  | 224px
+min-height | 56px
+font-size  | 16px
+padding    | 18px 24px
+
+<Canvas>
+  <Story id="components-ozbutton-stories--size-xxl"/>
+</Canvas>
+
+### Тема
+
+`theme`
+
+<Canvas>
+  <Story id="components-ozbutton-stories--primary"/>
+  <Story id="components-ozbutton-stories--success"/>
+  <Story id="components-ozbutton-stories--secondary"/>
+  <Story id="components-ozbutton-stories--secondary-white"/>
+  <Story id="components-ozbutton-stories--secondary-clear"/>
+  <Story id="components-ozbutton-stories--secondary-alt"/>
+  <Story id="components-ozbutton-stories--secondary-dark"/>
+  <Story id="components-ozbutton-stories--inline"/>
+  <Story id="components-ozbutton-stories--inline-danger"/>
+  <Story id="components-ozbutton-stories--material"/>
+  <Story id="components-ozbutton-stories--parandja"/>
+  <Story id="components-ozbutton-stories--secondary-danger"/>
+  <Story id="components-ozbutton-stories--secondary-success"/>
+  <Story id="components-ozbutton-stories--delivery"/>
+  <Story id="components-ozbutton-stories--video-control"/>
+  <Story id="components-ozbutton-stories--empty"/>
+  <Story id="components-ozbutton-stories--tab"/>
+  <Story id="components-ozbutton-stories--tab-active"/>
+  <Story id="components-ozbutton-stories--delete-white"/>
+  <Story id="components-ozbutton-stories--secondary-confirmed-white"/>
+  <Story id="components-ozbutton-stories--fresh"/>
+  <Story id="components-ozbutton-stories--secondary-fresh"/>
+  <Story id="components-ozbutton-stories--secondary-fresh-white"/>
+  <Story id="components-ozbutton-stories--gradient"/>
+</Canvas>
+
+#### Градиентная кнопка
+
+`theme="gradient"`
+
+Управлять цветом градиента можно через css-переменные:
+* `--ozButtonGradientStart` - первый цвет
+* `--ozButtonGradientEnd` - второй цвет
+
+Полностью переопределить параметры градиента можно через установку компоненту переменной `--ozButtonGradient` (например: `--ozButtonGradient: linear-gradient(to bottom, #00f 50%, #000 100%)`).
+
+### Иконка
+
+`icon`.
+
+<Canvas>
+  <Story id="components-ozbutton-stories--icon"/>
+</Canvas>
+
+#### Позиционирование иконки
+
+`icon-position`
+
+<Canvas>
+  <Story id="components-ozbutton-stories--icon-position-left"/>
+  <Story id="components-ozbutton-stories--icon-position-right"/>
+</Canvas>
+
+#### Цвет иконки
+
+`icon-color`
+
+<Canvas>
+  <Story id="components-ozbutton-stories--icon-color"/>
+</Canvas>
+
+#### Поворот иконки
+
+`icon-rotate`
+
+<Canvas>
+  <Story id="components-ozbutton-stories--icon-rotate"/>
+</Canvas>
+
+### Индикатор загрузки
+
+При асинхронном действии кнопка должна менять состояние на loading: true.
+Вне зависимости от цвета она становится серой.
+
+<Canvas>
+  <Story id="components-ozbutton-stories--loading"/>
+</Canvas>
+
+### Кнопка-ссылка
+
+⚠️ ВНИМАНИЕ!
+Пропс `href` использовать только с `type="fakeLink"`, на компоненте ловить `onClick` и обрабатывать с `ComposerRouter`.
+`type="fakeLink"` и `href` используются лишь для того чтобы в браузере пользователю сохранить поведение
+правой кнопки мыши и клика с ctrl.
+
+**Иные способы использование в дальнейшем будут отключены.**
+
+<Canvas>
+  <Story id="components-ozbutton-stories--href"/>
+</Canvas>
+
+### Кнопка `fakeButton` с `role=button`
+
+⚠️ ВНИМАНИЕ!
+[По стандартам w3c](https://html.spec.whatwg.org/multipage/form-elements.html#the-button-element) внутри тега `button` может находиться только фразовый контент. `div` к ним не относистя.
+
+В связи с этим в кнопку добавляется `type="fakeButton"`, который используются для того чтобы в "кнопку" можно было вкладывать `div` элементы, но при этом у элемента сохраняется доступность.
+
+**Пропс `role` применяется в самом ките только с type="fakeButton". Внешний вид кнопки и друние события не меняются.
+На компоненте так же можно ловить `onClick` и обрабатывать как необходимо.**
+
+<Canvas>
+  <Story id="components-ozbutton-stories--fake-button"/>
+</Canvas>
+
+### Кнопка на всю ширину блока
+
+У кнопки есть параметр `fill`. По умолчанию он `false`. Если поставить `fill` или `:fill="true"`,
+то кнопка растянется на всю ширину контейнера.
+
+<Canvas>
+  <Story id="components-ozbutton-stories--fill"/>
+</Canvas>

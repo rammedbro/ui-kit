@@ -1,0 +1,77 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzLoader from '@/loader';
+
+<Meta title="Components/OzLoader/Overview"
+      component={OzLoader}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzLoader
+
+Иконка с анимацией.
+
+В зависимости от параметра `size` меняется **размер** элемента.
+Если он не пришел, то выставляется дефолтное значение (`m`).
+
+Заливка иконки происходит через переменную `currentColor`, т.е.
+цвет соответсвует `color` элемента внутри которого она находится.
+
+Варианты `size`:
+
+- `s` (16x16)
+- `m` (24х24)
+- `l` (40х40)
+
+## Примеры
+
+### Размер
+
+`size s`
+
+<Canvas>
+  <Story id="components-ozloader-stories--size-s"/>
+</Canvas>
+
+`size m`
+
+<Canvas>
+  <Story id="components-ozloader-stories--size-m"/>
+</Canvas>
+
+`size l`
+
+<Canvas>
+  <Story id="components-ozloader-stories--size-l"/>
+</Canvas>
+
+### Цвет
+
+_В примере свет текста `color` задан у одного из родительских компонентов: `color: 'var(--ozCtrlNegative)'`_
+
+`size s`
+
+<Canvas>
+  <div style={{color: 'var(--ozCtrlNegative)'}}>
+    <Story id="components-ozloader-stories--size-s"/>
+  </div>
+</Canvas>
+
+`size m`
+
+<Canvas>
+  <div style={{color: 'var(--ozCtrlNegative)'}}>
+    <Story id="components-ozloader-stories--size-m"/>
+  </div>
+</Canvas>
+
+`size l`
+
+<Canvas>
+  <div style={{color: 'var(--ozCtrlNegative)'}}>
+      <Story id="components-ozloader-stories--size-l"/>
+  </div>
+</Canvas>

@@ -1,0 +1,57 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzRadio from '@/radio';
+
+<Meta title="Components/OzRadio/Overview"
+      component={OzRadio}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzRadio
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=7349%3A8)
+
+## Описание
+
+Компонент радио-кнопки. Редко используется одиночно. Обычно применяется в цикле.
+Значение `value` передаётся пропсом, а вот текст нужно записывать между открывающим и закрывающим тегами `<OzRadio>`.
+
+Имеет ряд настроек и состояний, которые управляются пропсами:
+
+- `control-position` указывает с какой стороны будет отображаться текст: `left` или `right`
+- `fill` делает доступным для клика всю строку с радио-кнопкой
+- `disabled` отменяет кликабильность и показывает что выбор нельзя изменить
+- `has-error` подсвечивает рамку красным, давая понять что пункт обязательен к выбору
+- `is-mobile-theme` влияет на размер кнопки, устанавливет его в 24х24px
+- `theme` влияет на вид отображения. `default`, `button`, `primaryButton`
+- `text, primaryText, subtext` используются в темах `button`, `primaryButton` в качестве текста в кнопке
+
+_*Так же компонент наследуюет все нативные евенты_
+
+## Примеры
+
+### Default (desktop)
+
+<Canvas>
+  <Story id="components-ozradio-stories--default"/>
+</Canvas>
+
+### Default (mobile)
+
+`is-mobile-theme`
+
+<Canvas>
+  <Story id="components-ozradio-stories--is-mobile-theme"/>
+</Canvas>
+
+### Button theme
+занимает всю доступную ширину, содержимое кнопки задается в `text`, `primaryText`, `subtext`
+
+<Canvas>
+  <Story id="components-ozradio-stories--primary-button-theme"/>
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-ozradio-stories--default)

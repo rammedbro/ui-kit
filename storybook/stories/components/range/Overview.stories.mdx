@@ -1,0 +1,53 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzRange from '@/range';
+
+<Meta title="Components/OzRange/Overview"
+      component={OzRange}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzRange
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=4246%3A5431)
+
+## Описание
+
+Компонент ползунка.
+
+Имеет 2 типа отображения:
+- ползунок (по умолчанию один control)
+- поля ввода (min/max)
+
+***Only inputs mode** pаботает если модель данных является массивом и передан параметр `only-inputs`.
+Параметр также сбрасывает фиксированный размер у инпутов (с `{ width: 120px }` на `{ width: 100%; min-width: 120px }`),
+поэтому размеры компонента нужно ограничивать контейнером.
+
+Так же у компонента можно настроить размер полей ввода (`inputs-size`): `s`, `m`, `l`, `xl`, `xxl`.
+
+## Примеры
+
+### Default
+
+`value` type number
+
+<Canvas>
+  <Story id="components-ozrange-stories--default"/>
+</Canvas>
+
+### Range
+
+`value` type array
+
+<Canvas>
+  <Story id="components-ozrange-stories--range"/>
+</Canvas>
+
+### Only inputs mode
+
+<Canvas>
+  <Story id="components-ozrange-stories--only-inputs"/>
+</Canvas>

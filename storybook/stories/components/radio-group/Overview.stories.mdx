@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzRadioGroup from '@/radio-group';
+
+<Meta title="Components/OzRadioGroup/Overview"
+      component={OzRadioGroup}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzRadioGroup
+
+## Описание
+
+Компонент радио-группы. Каждый элемент обладает всеми св-вами состояний [OzRadio](./?path=/docs/components-ozradio-overview--page),
+но отличается тем что принимает на вход сразу массив значений.
+
+У каждой радио-группы есть атрибут `name`,
+котрый добавляется автоматически и состоит из строки `'radio'` + `index`, например `radio1`.
+Также можно задать и свой кастомный `name`.
+
+
+## Примеры
+
+### По умолчанию
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=7349%3A8)
+
+модель radioItem `{ value, label }`
+
+<Canvas>
+  <Story id="components-ozradiogroup-stories--default"/>
+</Canvas>
+
+### Кнопочная тема
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-BX-Components?node-id=67%3A1155)
+
+модель radioItem `{ value, text, primaryText, subtext }`, кол-во элементов <= 3
+
+<Canvas>
+    <Story id="components-ozradiogroup-stories--button"/>
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-ozradiogroup-stories--default)
+
+

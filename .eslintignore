@@ -1,0 +1,6 @@
+dist
+node_modules
+src/components/icons/*.js
+src/components/loader/icons/*.js
+tests/e2e/app/icons/*.js
+!.o3

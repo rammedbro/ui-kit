@@ -1,0 +1,62 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsLoader from '@/ds-loader';
+
+<Meta title="Components/DsLoader/Overview"
+      component={DsLoader}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsLoader
+
+Иконка загрузки с анимацией.
+
+В зависимости от параметра `size` меняется **размер** элемента.
+Если он не пришел, то выставляется дефолтное значение (`500`).
+
+Варианты `size`:
+
+- `200` (16x16)
+- `300` (24х24)
+- `400` (32х32)
+- `500` (44х44)
+- `600` (65х56)
+
+Заливка цвета иконки происходит через prop `color`. В качестве значения нужно указывать доступные цвета из раздела DESIGN SYSTEM -> [COLORS](https://ui-kit.o3.ru/?path=/story/design-system-colors--colors). Из этого раздела можно использовать любые цвета кроме CORE. Не смотря на то, что prop `color` позволяет указать любые значения цвета в формате HEX и RGB, использование данной возможности не рекомендутся с целью сохранения консистентности дизайна.
+
+## Примеры
+
+### Размер
+
+`size 200`
+
+<Canvas>
+  <Story id="components-dsloader-stories--size-200"/>
+</Canvas>
+
+`size 300`
+
+<Canvas>
+  <Story id="components-dsloader-stories--size-300"/>
+</Canvas>
+
+`size 400`
+
+<Canvas>
+  <Story id="components-dsloader-stories--size-400"/>
+</Canvas>
+
+`size 500`
+
+<Canvas>
+  <Story id="components-dsloader-stories--size-500"/>
+</Canvas>
+
+`size 600`
+
+<Canvas>
+  <Story id="components-dsloader-stories--size-600"/>
+</Canvas>

@@ -1,0 +1,4 @@
+dist
+node_modules
+src/assets/styles/tokens
+src/assets/styles/classes

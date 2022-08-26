@@ -1,0 +1,76 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzNotification from '@/notification';
+
+<Meta title="Components/OzNotification/Overview"
+      component={OzNotification}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzNotification
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=0%3A2007)
+
+## Описание
+
+Компонент уведомительного сообщения.
+
+## Примеры
+
+### Слоты
+
+#### default
+
+Содержание сообщения передается в дефолтный слот компонента.
+
+<Canvas>
+  <Story id="components-oznotification-stories--default"/>
+</Canvas>
+
+#### footer
+
+<Canvas>
+  <Story id="components-oznotification-stories--slot-footer"/>
+</Canvas>
+
+### Сообщения с иконкой
+
+<Canvas>
+  <Story id="components-oznotification-stories--icon"/>
+  <Story id="components-oznotification-stories--icon-color"/>
+</Canvas>
+
+### Сообщения с темной темой и иконкой
+
+<Canvas>
+  <Story id="components-oznotification-stories--theme-dark-icon"/>
+</Canvas>
+
+### Сообщения с кнопкой закрыть
+
+<Canvas>
+  <Story id="components-oznotification-stories--close-button"/>
+  <Story id="components-oznotification-stories--theme-dark-close-button"/>
+</Canvas>
+
+### Сообщения с кнопками
+
+<Canvas>
+  <Story id="components-oznotification-stories--buttons-default"/>
+  <Story id="components-oznotification-stories--buttons-inline"/>
+</Canvas>
+
+### Сообщения с заголовком
+
+<Canvas>
+  <Story id="components-oznotification-stories--title"/>
+</Canvas>
+
+### Сообщения с картинкой
+
+<Canvas>
+  <Story id="components-oznotification-stories--image"/>
+</Canvas>

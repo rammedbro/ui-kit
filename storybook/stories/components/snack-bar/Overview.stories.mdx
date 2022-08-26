@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzSnackBar from '@/snack-bar';
+
+<Meta title="Components/OzSnackBar/Overview"
+      component={OzSnackBar}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzSnackBar
+
+[Дизайн (данный компонент использует внутри себя OzNotification и имеет такой же дизайн)](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=0%3A2007)
+
+## Описание
+
+Компонент для вывода нотификаций на сайте. Может быть вызван глобально, с помощью notification-service.
+
+## Примеры
+
+### По умолчанию
+
+Тип (type) `success`, время отображения (timeout) 5000мс, расположение (position) `BOTTOM_RIGHT`
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--default" />
+</Canvas>
+
+### Type
+
+Есть три типа у компонента SnackBar. Он влияет на иконку отображаемую внутри компонента.
+По умолчанию `success`.
+
+#### Type 'error'
+<Canvas>
+  <Story id="components-ozsnackbar-stories--type-error" />
+</Canvas>
+
+#### Type 'info'
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--type-info" />
+</Canvas>
+
+### Width
+
+Задается ширина компонента. Если передать `auto`, ширина будет зависеть от контента внутри SnackBar
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--width" />
+  <Story id="components-ozsnackbar-stories--width-auto" />
+</Canvas>
+
+### Timeout
+
+`timeout` задает время, втечение которого виден компонет
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--timeout" />
+</Canvas>
+
+### Infinity
+
+Если передать пропс `infinity`, snackBar закрыть можно будет только нажав на кнопку в углу компонента
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--infinity-prop" />
+</Canvas>
+
+### Position
+
+Аргумент `position` задает координаты расположения компонента. По умолчанию `BOTTOM_RIGHT`
+
+#### BOTTOM_CENTER
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--position-bc" />
+</Canvas>
+
+#### BOTTOM_LEFT
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--position-bl" />
+</Canvas>
+
+#### TOP_RIGHT
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--position-tr" />
+</Canvas>
+
+#### TOP_CENTER
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--position-tc" />
+</Canvas>
+
+#### TOP_LEFT
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--position-tl" />
+</Canvas>
+
+### Image
+
+Аргумент `image` используется для отображения картинки вместо иконки
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--image" />
+</Canvas>
+
+### Title
+
+В аргументе `title` прокидывается заголовок snackBar
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--title" />
+</Canvas>
+
+### Icon
+
+В аргументе `icon` прокидывается иконка snackBar. `IconColor` задает ее цвет
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--icon-color" />
+</Canvas>
+
+### Coords
+
+В аргументе `coords` задаются координаты расположения компонента.
+Передается объект со свойствами `top`, `bottom`, `right` или `left`.
+
+<Canvas>
+  <Story id="components-ozsnackbar-stories--coords" />
+</Canvas>

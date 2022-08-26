@@ -1,0 +1,49 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzProgress from '@/progress';
+
+<Meta title="Components/OzProgress/Overview"
+      component={OzProgress}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzProgress
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/progressBar)
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=5624%3A8156)
+
+## Описание
+
+Компонент для отображения прогресса. Настраивается пропсами:
+
+- `percent` задает значение прогресса
+- `width` ширина линии, по умолчанию занимает вcю ширину родительского компонента
+- `height` высота линии, обязательный пропс, если не передать его, линия не отобразится. По умолчанию undefined.
+- `color` цвет полосы прогресса, по уполчанию `ozGreenUi`
+- `backgroundColor` цвет фона полосы прогресса, по умолчанию `ozTextQuaternary`
+- `time` кофигурация анимации панели: время анимации
+- `bezier` кофигурация анимации панели: cubic bezier
+
+## Примеры
+
+### 24%
+
+<Canvas>
+  <Story id="components-ozprogress-stories--default" />
+</Canvas>
+
+### С текстом
+
+<Canvas>
+  <Story id="components-ozprogress-stories--with-text" />
+</Canvas>
+
+### 100%
+
+<Canvas>
+  <Story id="components-ozprogress-stories--in-progress" />
+</Canvas>

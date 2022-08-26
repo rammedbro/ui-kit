@@ -1,0 +1,107 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzBadge from '@/tag';
+
+<Meta title="Components/OzBadge/Overview"
+      component={OzBadge}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzBadge
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=67%3A1149)
+
+## Описание
+
+Компонент отображение бейджей.
+Один из параметров `text` или `icon` обязательный.
+
+- *`text?` - однострочный, может отсутствовать только если есть `image`
+- *`icon?` - компонент иконки из [Icons](http://icons.prod.a.o3.ru/?path=/story/icon--all-icons).
+
+## Примеры
+
+### По умолчанию
+
+По-умолчанию: фоновый цвет `--ozGreenBrand`, цвет текста белый, размер `m`.
+
+<Canvas>
+  <Story id="components-ozbadge-stories--default"/>
+</Canvas>
+
+### Текст трансформ
+
+`textTransform`. Вариант отображения текста:
+
+`none` > `uppercase` > `lowercase` > `capitalize`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--text-transform-capitalize"/>
+  <Story id="components-ozbadge-stories--text-transform-uppercase"/>
+  <Story id="components-ozbadge-stories--text-transform-lowercase"/>
+  <Story id="components-ozbadge-stories--text-transform-none"/>
+</Canvas>
+
+### Размер
+
+`size`. Варианты размеров: `xs`, `s`, `m` (default)
+
+<Canvas>
+  <Story id="components-ozbadge-stories--size-xs"/>
+  <Story id="components-ozbadge-stories--size-s"/>
+  <Story id="components-ozbadge-stories--size-m"/>
+</Canvas>
+
+### С иконкой
+
+`icon`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--icon"/>
+</Canvas>
+
+### Положение иконки
+
+`iconPosition`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--icon-position-left"/>
+  <Story id="components-ozbadge-stories--icon-position-right"/>
+</Canvas>
+
+### Цвет
+
+#### Цвет иконки
+
+`iconColor`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--icon-color"/>
+</Canvas>
+
+#### Цвет бейджа
+
+`backgroundColor`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--background-color"/>
+</Canvas>
+
+#### Цвет текста
+
+`color`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--color"/>
+</Canvas>
+
+#### Цвет рамки
+
+`borderColor`
+
+<Canvas>
+  <Story id="components-ozbadge-stories--border-color"/>
+</Canvas>

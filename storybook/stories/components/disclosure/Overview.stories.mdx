@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzDisclosure from '@/disclosure';
+
+<Meta title="Components/OzDisclosure/Overview"
+      component={OzDisclosure}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzDisclosure
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/%F0%9F%92%A0-02.-BX-Components?node-id=40820%3A125539)
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/disclosure)
+
+## Описание
+Испключительно нефункциональный компонент стрелки для заголовков, не имеющий состояний hover, active...
+По дефолту имееет определенный цвет текста, иконки и фона, без возможности кастомизации.
+В последствии компонент планируется к расширению его использования и функциональности.
+
+
+В зависимости от параметра theme меняется стилистика. Если он не пришел, то выставляется дефолтное значение (DEFAULT).
+Варианты theme:
+- DEFAULT
+- FRESH
+
+
+## Примеры
+`theme:`
+`DEFAULT` > `FRESH`
+
+#### Стандартное отображение
+<Canvas>
+  <Story id="components-ozdisclosure-stories--default"/>
+  <Story id="components-ozdisclosure-stories--theme-fresh"/>
+</Canvas>
+
+#### Отображение с текстом
+<Canvas>
+  <Story id="components-ozdisclosure-stories--default-text"/>
+  <Story id="components-ozdisclosure-stories--theme-fresh-text"/>
+</Canvas>

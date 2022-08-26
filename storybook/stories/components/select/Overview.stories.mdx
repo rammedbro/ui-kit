@@ -1,0 +1,46 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzSelect from '@/select';
+
+<Meta title="Components/OzSelect/Overview"
+      component={OzSelect}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzSelect
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A66623)
+
+## Описание
+
+Компонент выпадающего списка для выбора одного из пунктов.
+Внешний вид и основные состояния идентичны компоненту [OzInput](./?path=/docs/components-ozinput-overview--page).
+
+Выпадающий список может отображать процесс загрузки (`loading`), может быть неактивен (`disabled`).
+
+На вход `OzSelect` принимает массив `options`  и по умолчанию из них можно выбрать только 1 элемент.
+
+### Мультивыбор
+
+Требует передачи сразу нескольких параметров для корректной работы. Параметры `multiple`, `toggle-option` и ``:close-on-select="false"` - включают мультиселект,
+возможность deselect'ить а также не закрывать дропдаун после клика по option'у.
+
+Можно добавить в котором можно отобразить кнопки "Очистить" (_очищает выбранные значения, emit'ит событие `clean`_)
+и "Подтвердить" (_закрывает дропдаун, и emit'ит событие `confirm`_).
+
+**ВАЖНО!**
+1. Для работы в `multiple` обязательно нужно передавать значение для `v-model` массивом, а не строкой.
+2. Для корректной работы, в `multiple` режиме, основного поля ввода нужно использовать `slot="selectedOptions"`.
+
+## Примеры
+
+### Default
+
+<Canvas>
+  <Story id="components-ozselect-stories--default"/>
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-ozselect-stories--default)

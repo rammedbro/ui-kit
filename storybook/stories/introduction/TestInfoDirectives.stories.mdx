@@ -1,0 +1,184 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Qa директива для автотестов"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# Qa директива для автотестов
+
+**Содержание:**
+
++ [Испольование](#испольование)
++ [Рекомендации](#рекомендации)
++ [Как работает директива](#как-работает-директива)
++ [Как проверить директиву в storybook](#как-проверить-директиву-в-storybook)
+
+Директива добавляет атрибуты к элементам для авто-тестов только при наличии заголовка или куки `x-o3-ui-tests=true`.
+*В ui-kit можно проверить появление директивы в Stories или Properties компонента проставив в браузере необходимую куку.
+
+❗️ ВАЖНО: Директивы поддерживаются у компонентов кита, но они не попадают в бандл, т.к. устанавливаются уже непосредственно по месту использованию ui-kit компонентов, например во frontend-ozon-ru.
+
+## Использование
+
+Для добавлении директивы сперва нужно передать/добавить в компонент пропс `testInfo`, который являеться объектом.
+
+Структура была позаимствована [из мобильных контрактов](https://gitlab.ozon.ru/bx/contracts/-/blob/master/proto/core/mobile/uiTesting/testInfo.proto),
+чтобы при передачи `automatizationId` с бэкенда можно было напрямую передать всё что пришло.
+
+**Пример:**:
+
+```js
+/**
+ * ID для автотестов
+ * @property {string | undefined} testInfo.automatizationId
+ * */
+testInfo: {
+  type: Object,
+  default: () => ({}),
+},
+
+```
+
+Однако, т.к. на вебе компоненты более содержательны, обладают большим кол-вом внутренних элементов,
+появляется необходимость передвать несколько automatizationId для внутренних элементов ui-kit компонента,
+таких как: иконки, элементы выпадающего списка, навигация в слайдерах, снопки закрытия в модальных окнах.
+Поэтому предусмотрено что web ui-kit компоненты могут принимать структуру testInfo с разным набором automatizationId.
+
++ `automatizationId` - для рутового компонента кита или если automatizationId один на весь компонент
++ `automatizationIconId` - для иконки внутри компонента
++ `automatizationCloseId` - для кнопки "закрыть" внутри компонента
++ `automatizationButtonId` - для элемента кнопки, внутри компонента
+
+и т.п.
+
+**Пример адаптированный под web:**:
+
+```js
+/**
+ * ID для автотестов
+ * @property {string | undefined} testInfo.automatizationIconId for icon
+ * @property {string | undefined} testInfo.automatizationButtonId for button
+ * @property {string | undefined} testInfo.automatizationTitleId for title
+ * @property {string | undefined} testInfo.automatizationSubtitleId for subtitle
+ * */
+testInfo: {
+  type: Object,
+  default: () => ({}),
+},
+```
+
+### Рекомендации
+
+Т.к. пропс для qa директивы принимает объект, то рекомендуем вам в своих виджетах готовить `qa-id` в виде объекта или "замороженного"  объекта
+через `data`, если он **не** приходит к вам с бэкенда.
+
+**Пример 1:**
+
+```js
+<template>
+  <OzButton test-info="{ automatizationId: 'test-id-button' }" />
+<template>
+```
+
+**Пример 2:**
+
+```js
+<template>
+  <OzButton test-info="qaDataButton" />
+<template>
+
+<script>
+import { OzButton } from '@app/entity/error/widget-error'
+
+const qaDataButton = Object.freeze({
+  automatizationId: 'test-id-button'
+});
+
+export default {
+  data() {
+    return: qaDataButton
+  }
+}
+<script>
+```
+
+**Пример 3 (JSX):**
+
+```jsx
+return (
+  <OzButton
+    testInfo={{ automatizationId: 'test-id-button' }}
+  />
+);
+```
+
+**Пример 4 (render function):**
+
+```jsx
+return h(
+  OzButton,
+  {
+    props: {
+      testInfo: {
+        automatizationId: 'test-id-button'
+      }
+    },
+    ...
+  }
+);
+```
+
+## Как работает директива
+
+На элемент добавляеться кастомная директива `v-qa` и через `:` прописывается параметр-название директивы.
+Например `v-qa:id` потом развернётся на элементе как `qa-id`, соотвественно `v-qa:name`, как `qa-name`.
+НО в ui-kit используется только вариант **v-qa:id**
+
+Добавление директивы в `template`:
+
+```html
+<!-- Обе записи равнозначны -->
+<div v-qa="{id: 'test-id', name: 'name'}"></div>
+<div v-qa:id="test-id" v-qa:name="'name'"></div>
+
+<!-- Превращается в такое: -->
+<div qa-id="test-id" qa-name="name"></div>
+
+```
+
+Добавление директивы в JSX
+
+```jsx
+return (
+  <div
+    {...{ directives: [{name: 'qa', value: { id: 'test-id' } }] }}
+  >
+  </div>
+);
+
+```
+
+## Как проверить директиву в storybook
+
+**Шаг 1**: Добавьте в объект `testInfo` ключ `automatizationId`:
+
+1.1
+<img src="/img/introduction/qa-directive/test-info-plus.png" alt="Добавьте новый ключ automatizationId в объект" width="700" />
+
+1.2
+<img src="/img/introduction/qa-directive/test-info-add-key.png" alt="Добавьте значение дял ключа automatizationId" width="700" />
+
+**Шаг 2**: Установите куку в консоли `x-o3-ui-tests=true`:
+
+<img src="/img/introduction/qa-directive/test-info-add-cookie.png" alt="Установите куку x-o3-ui-tests=true" width="400" />
+
+**Шаг 3**: Всё, можете проверять `qa-id` на элементе:
+
+<img src="/img/introduction/qa-directive/test-info-qa-id.png" alt="Появится возможность добавлять новые ключи" width="400" />
+
+

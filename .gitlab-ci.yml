@@ -1,0 +1,31 @@
+include:
+  - project: 'pub/ci'
+    ref: '0.0.5'
+    file: '/.common.gitlab-ci.yml' # Common pipiline
+  - project: 'pub/ci'
+    ref: '0.0.5'
+    file: '.canary-nginx.gitlab-ci.yml'
+  - local: /.o3/ci/.pre.yml
+  - local: /.o3/ci/build.yml
+  - local: /.o3/ci/tests.yml
+  - local: /.o3/ci/publish.yml
+  - local: /.o3/ci/pre-deploy.yml
+  - local: /.o3/ci/deploy.yml
+  - local: /.o3/ci/close.yml
+
+variables:
+  # свой namespace, по умолчанию берется $CI_PROJECT_NAMESPACE
+  K8S_NAMESPACE: bx
+  # если не указать будет использоваться $CI_PROJECT_PATH_SLUG (формат group-subgroup-project, например cas-roles)
+  SERVICE_NAME: ui-kit
+  # проект в JIRA в котором будут заводится релизы
+  JIRA_PROJ: BXFE
+  # префикс для релиза в jira
+  JIRA_VERSION_PREFIX: ui-kit/
+  # путь до файлов values
+  HELM_VALUES_FOLDER: .o3/k8s
+  # расположение файла для сборки docker образа
+  DOCKERFILE_PATH: .o3/deploy/Dockerfile
+  BUILDER_IMAGE: ${CI_REGISTRY}/docker/nodejs/base:14
+  BUILDER_IMAGE_WITH_CACHE: ${CI_REGISTRY}/${CI_PROJECT_PATH}/node-deps:latest
+  DYNAMIC_TAG: "yes"

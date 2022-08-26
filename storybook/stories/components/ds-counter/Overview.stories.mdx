@@ -1,0 +1,29 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsCounter from '@/ds-counter';
+
+<Meta title="Components/DsCounter/Overview"
+      component={DsCounter}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsCounter
+
+[Дизайн](https://www.figma.com/file/tPy723dWiTXJaXaFipZI1C/%F0%9F%92%A0-Icons-%7C-Components?node-id=511%3A2873)
+
+
+Компонент выполняет функцию счетчика. По сути, является обвесом над другим компонентом - [DsSubicon](./?path=/docs/components-dssubicon-overview--page) с дополнительной логикой:
+
++ `label` - значение каунтера, могут быть только цифры
++ `limit` - задаёт максимальное значение при привышении которого значение будет сформировано в виде `'${limit}+'`
++ `isTruncated` - заменяет цифровое значение иконкой `ic_s_dot` из библиотеки `@fe-icons`
++ `preset` - варианты настроек визуальной темы компонента
+
+Контент в компоненте (цифры и иконка) отображаются только при размерах 500 и 600 (проп `size`).
+
+## Примеры
+
+[Примеры в Stories](./?path=/docs/components-dscounter-stories--default)

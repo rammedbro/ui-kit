@@ -1,0 +1,122 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzImage from '@/image';
+
+<Meta title="Components/OzImage/Overview"
+      component={OzImage}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzImage
+
+## Описание
+
+Компонент изображения.
+
+Основные функции:
+
+- При пустом `src` или ошибке при загрузке по умолчанию устанавливает изображение "На фотосессии".
+- Позволяет указать явно набор возможных источников изображения для использования пользовательскими агентами (prop `srcset`).
+- Имеет функционал "заблюривания" изображении при условии `is-adult === true`
+- Может сеттить атрибут `loading`, позволяющий современным браузерам запустить механиз ленивой загрузки.(prop `lazy`)
+
+Допполнительные возможности:
+
+- `image-grey` - позволяет задать серый фон для изображения
+- `useWebP` - пропс для использования формата сжатия изображени
+- `disable-src-set` - пропс для отключения `srcset`
+- `src-error` - позволяет задать кастомное изображение при пустом 'src' или ошибке при загрузке
+
+## Safari
+
+В браузере Safari не поддерживается событие onload.
+Поэтому если необходимо отслеживать данное событие, следует использовать обертку `OzImageLoad`.
+Пропсы передаются так же, как и в `OzImage`.
+
+### Примеры
+
+#### Пустой src или ошибка при загрузке
+
+При пустом `src` или ошибке при загрузке по умолчанию устанавливает изображение "На фотосессии".
+
+<Canvas>
+  <Story id="components-ozimage-stories--empty"/>
+</Canvas>
+
+#### Использование cdn
+
+`size` + `use-cdn`
+
+Если указывается `size` и `use-cdn`,
+тогда хелпер формирует урл для изображения для его ресайза на стороне nginx (например для увеличения в 2 раза, или наоборот намеренное уменьшение размера картинки до 700px)
+
+<Canvas>
+  <Story id="components-ozimage-stories--use-cdn"/>
+</Canvas>
+
+** ❗❗❗ ВАЖНО:** *Есть ограничение на размер изображения для ресайза.*
+*Изображения больше 33.2 мегапикселя возвращают ошибку `422 Source image resolution is too big`, в этом случае компонент img выдаст error при рендере фото и мы заменим его
+на дефолтное изображение "На фотосессии".*
+
+#### Использование Srcset
+
+Позволяет указать набор возможных источников изображения для использования пользовательскими агентами вручную
+
+Сравнение использования `srcset`, `size` + `use-cdn` и `disable-src-set`:
+
+<Canvas>
+  <Story id="components-ozimage-stories--srcset"/>
+  <Story id="components-ozimage-stories--use-cdn-like-srcset"/>
+  <Story id="components-ozimage-stories--disable-src-set"/>
+</Canvas>
+
+#### Ограничение ширины
+
+<Canvas>
+  <Story id="components-ozimage-stories--max-width"/>
+</Canvas>
+
+#### Ограничение высоты
+
+<Canvas>
+  <Story id="components-ozimage-stories--max-height"/>
+</Canvas>
+
+#### Ресайз по ширине
+
+<Canvas>
+  <Story id="components-ozimage-stories--scale-by-width"/>
+</Canvas>
+
+#### Ресайз по высоте
+
+<Canvas>
+  <Story id="components-ozimage-stories--scale-by-height"/>
+</Canvas>
+
+
+
+#### Квадратная картинка
+
+<Canvas>
+  <Story id="components-ozimage-stories--is-square"/>
+</Canvas>
+
+#### Контент для взрослых
+
+`is-adult`. По умолчанию с текстом.
+
+<Canvas>
+  <Story id="components-ozimage-stories--is-adult"/>
+</Canvas>
+
+#### Контент для взрослых без текста
+
+`is-adult` + `no-text`
+
+<Canvas>
+  <Story id="components-ozimage-stories--is-adult-no-text"/>
+</Canvas>

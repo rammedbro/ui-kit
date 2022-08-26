@@ -1,0 +1,64 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "target": "es5",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "strictPropertyInitialization": false,
+    "noImplicitAny": false,
+    "noImplicitThis": false,
+    "strictNullChecks": false,
+    "removeComments": false,
+    "esModuleInterop": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "paths": {
+      "~/*": [
+        "src/*"
+      ],
+      "@/*": [
+        "src/components/*"
+      ],
+      "~root/*": [
+        "./*"
+      ],
+      "~build/*": [
+        "build/*"
+      ],
+      "~storybook/*": [
+        "storybook/*"
+      ],
+      "~wdio/*": [
+        "wdio/*"
+      ],
+      "~unit/*": [
+        "tests/unit/*"
+      ],
+      "~e2e/*": [
+        "tests/e2e/*"
+      ],
+      "~tokens": [
+        "tokens/*"
+      ],
+      "@fe-icons": [
+        "node_modules/@fe/icons"
+      ],
+      "@fe-icons/*": [
+        "node_modules/@fe/icons/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "jest.config.ts",
+    "global.d.ts"
+  ]
+}

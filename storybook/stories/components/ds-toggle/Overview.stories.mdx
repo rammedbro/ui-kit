@@ -1,0 +1,43 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsToggle from '@/ds-toggle';
+
+<Meta title="Components/DsToggle/Overview"
+      component={DsToggle}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsToggle
+
+[Дизайн](https://www.figma.com/file/XXrT4o9qYaM6b4FEHoEuDJ/%F0%9F%92%A0-Comp.-%7C-Selection-Controls?node-id=2%3A4049)
+
+## Описание
+
+Компонент переключателя.
+
+## Примеры
+
+### Не активирован (по умолчанию)
+
+<Canvas>
+  <Story id="components-dstoggle-stories--default"/>
+</Canvas>
+
+### Активирован
+
+`checked`
+
+<Canvas>
+  <Story id="components-dstoggle-stories--status-checked"/>
+</Canvas>
+
+### Неактивен
+
+`disabled`
+
+<Canvas>
+  <Story id="components-dstoggle-stories--state-disabled"/>
+</Canvas>

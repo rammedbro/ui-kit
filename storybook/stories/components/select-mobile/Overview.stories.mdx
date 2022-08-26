@@ -1,0 +1,34 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzSelectMobile from '@/select-mobile';
+
+<Meta title="Components/OzSelectMobile/Overview"
+      component={OzSelectMobile}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzSelectMobile
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A66752)
+
+## Описание
+
+Компонент предназначен исключительно для  мобильного веба.
+
+Вместо выпадающего списка, как в обычном [OzSelect](./?path=/docs/components-ozselect-overview--page),
+выбор появиляется в модальном окне, на весь экран.
+
+Пропс `filterable` даёт возможность фильтровать среди множества вариантов.
+
+## Примеры
+
+### Default
+
+<Canvas>
+  <Story id="components-ozselectmobile-stories--default"/>
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-ozselectmobile-stories--default)

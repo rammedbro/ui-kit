@@ -1,0 +1,67 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/Тестирование rc-сборки в вашем проекте"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# Тестирование rc-сборки в вашем проекте
+
+**Содержание:**
++ [Требования](#требования)
++ [Публикация пакета](#публикуем-пакет)
++ [Тестирование](#тестирование)
++ [Завершение](#завершение)
+<br/>
+
+## Требования
+
+* Создать ветку `dev/<TASK_ID>`
+* Коммиты должны иметь `id` задачи по шаблону `[<TASK_ID>] message`
+* Ветка должна содержать коммиты только одной задачи
+
+## Публикуем пакет
+
+В пайплайне на стадии *deploy* необходимо запустить джобу **publish-rc**.
+
+<img src="/img/introduction/testing-rc-build-in-your-project/pipeline-publish-rc-job.png" alt="" width="800" />
+
+Она опубликует пакет с вашей веткой в группе `@bx-fe` с именем `ui-kit-<TASK_ID>`.
+
+<img src="/img/introduction/testing-rc-build-in-your-project/published-pkg-on-nexus.png" alt="" width="800" />
+
+Чтобы убедиться, что rc-сборка успешно опубликовалась в *npm*, можно перейти по ссылке, которая будет выведена
+в детальном отчете джобы **publish-rc**.
+
+<img src="/img/introduction/testing-rc-build-in-your-project/pipeline-publish-rc-job-detail.png" alt="" height="400" />
+
+При пуше любых новых изменений необходимо всякий раз запускать джобу **publish-rc**, которая будет публиковать новую
+версию пакета с вашими изменениями. Впоследствии все версии удалятся в джобе **clean-rc**.
+
+<img src="/img/introduction/testing-rc-build-in-your-project/published-pkg-diff-versions.png" alt="" width="800" />
+
+## Тестирование
+
+Создаем ветку в нужном проекте, где обновляем версию *ui-kit* на опубликованную одним из способов:
+* Командой `yarn add @bx-fe/ui-kit@npm:@bx-fe/ui-kit-bxfe-1702@1.0.1`
+* В ручную в `package.json`
+
+<br />
+
+<img src="/img/introduction/testing-rc-build-in-your-project/update-ui-kit-manual.png" alt="" width="600" />
+
+Катим ее до стейджа и тестируем.
+⚠️ Если ваши изменения могли задеть дргуие вертикали, попросите всех потестить сайт с вашим мешем в чате `#mp-frontend`, и только после этого завершайте тестирование `rc-сборки`.
+
+## Завершение
+
+После тестирования, катим изменения в *ui-kit* до прода и обязательно прожимаем джобу **clean-rc**
+в вашей ветке `dev/<TASK_ID>`, которая удалит ранее опубликованный пакет.
+
+<img src="/img/introduction/testing-rc-build-in-your-project/pipeline-clean-rc-job.png" alt="" width="800" />
+
+Затем в проекте меняем версию *ui-kit* обратно на `latest` и катим изменения до прода.

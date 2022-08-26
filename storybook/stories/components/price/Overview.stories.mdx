@@ -1,0 +1,97 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzPrice from '@/price';
+
+<Meta title="Components/OzPrice/Overview"
+      component={OzPrice}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPrice
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=70%3A77)
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/price#price)
+
+## Описание
+
+Компонент для отображения цены товара.
+
+## Примеры
+
+### По умолчанию
+
+По умолчанию цена имеет стиль `STYLE_TYPE_MEDIUM`.
+Пропс `price` является обязательным.
+
+<Canvas>
+  <Story id="components-ozprice-stories--default" />
+</Canvas>
+
+### Оригинальная цена
+
+Для акционного товара можно передать старую цену в параметр `originalPrice`.
+
+<Canvas>
+  <Story id="components-ozprice-stories--original-price" />
+</Canvas>
+
+### Цвет
+
+С помощью параметров `priceColor` и `originalPriceColor` можно менять цвет цен.
+
+<Canvas>
+  <Story id="components-ozprice-stories--color" />
+</Canvas>
+
+### Картинка
+
+С помощью параметра `image` устанавливается картинка слева от цены.
+Параметром `imageTintColor` настраивается ее цвет.
+
+<Canvas>
+  <Story id="components-ozprice-stories--image" />
+  <Story id="components-ozprice-stories--image-tint-color" />
+</Canvas>
+
+### Размеры
+
+Размер задается параметром `theme`
+
+#### L (`STYLE_TYPE_LARGE`)
+
+<Canvas>
+  <Story id="components-ozprice-stories--theme-l" />
+  <Story id="components-ozprice-stories--original-price-theme-l" />
+</Canvas>
+
+#### ML (`STYLE_TYPE_MEDIUM_LARGE`)
+
+<Canvas>
+  <Story id="components-ozprice-stories--theme-ml" />
+  <Story id="components-ozprice-stories--original-price-theme-ml" />
+</Canvas>
+
+#### M (`STYLE_TYPE_MEDIUM`)
+
+<Canvas>
+  <Story id="components-ozprice-stories--theme-m" />
+  <Story id="components-ozprice-stories--original-price-theme-m" />
+</Canvas>
+
+#### S (`STYLE_TYPE_SMALL`)
+
+<Canvas>
+  <Story id="components-ozprice-stories--theme-s" />
+  <Story id="components-ozprice-stories--original-price-theme-s" />
+</Canvas>
+
+#### XS (`STYLE_TYPE_X_SMALL`)
+
+<Canvas>
+  <Story id="components-ozprice-stories--theme-xs" />
+  <Story id="components-ozprice-stories--original-price-theme-xs" />
+</Canvas>

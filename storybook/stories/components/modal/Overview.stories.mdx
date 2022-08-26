@@ -1,0 +1,116 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzModal from '@/modal';
+
+<Meta title="Components/OzModal/Overview"
+      component={OzModal}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzModal
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A73383)
+
+## Описание
+
+Компонент модального окна.
+
+## Примеры
+
+### Обычный попап
+
+*Стандартные отступы (padding) по 48px.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--default"/>
+</Canvas>
+
+### Обычный попап с кнопкой закрытия за пределами попапа
+
+*Стандартные отступы (padding) по 48px. Пропс closeButtonPosition в значении 'outside'*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--default-with-close-outside"/>
+</Canvas>
+
+### Обычный попап c большим контентом по высоте
+
+*Стандартные отступы (padding) по 48px. Скролл внутри оверлея при максимальном заполнении.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--big-height-content"/>
+</Canvas>
+
+### Попап cо скролом в контентном блоке
+
+*Стандартные отступы (padding) по 48px. Скролл в контентном блоке при максимальном заполнении.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--scroll-inside-content"/>
+</Canvas>
+
+### Попап на весь экран
+
+*Стандартные отступы (padding) по 48px. Попап полностью закрывает собой весь экран и имеет размер с весь экран,
+оверлея не видно.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--theme-full-screen"/>
+</Canvas>
+
+### Попап без центрирования
+
+*Стандартные отступы (padding) по 48px. Расположение чуть выше центра экрана.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--centered-false"/>
+</Canvas>
+
+### Попап с непрозрачным оверлеем
+
+*Сам попап имеет стандартные отступы (padding) по 48px, оверлей за ним непрозрачный белый.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--opaque-background"/>
+</Canvas>
+
+### Попап с force-show
+
+*Показывается очень быстро, без плавной анимации.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--force-show"/>
+</Canvas>
+
+### Тема
+
+#### empty
+
+*Попап без отступов и фона, из-за чего без контента видно только оверлей и кнопку закрытия.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--theme-empty"/>
+</Canvas>
+
+### Тема (мобильный попап)
+
+#### empty
+
+*Попап без отступов и с белым фоном у контентной части.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--is-mobile-theme-empty"/>
+</Canvas>
+
+#### bottom
+
+*Высота определяется по размеру контента. Из отступов имеет только по 16px сверху и снизу. В состоянии полного
+заполнения имеет отступ сверху в 16px, где видно часть оверлея на заднем плане, чтобы было понятно, что это
+именно шторка.*
+
+<Canvas>
+  <Story id="components-ozmodal-stories--is-mobile-theme-bottom"/>
+</Canvas>

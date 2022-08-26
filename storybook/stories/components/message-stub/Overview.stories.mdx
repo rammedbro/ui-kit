@@ -1,0 +1,86 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzMessageStub from '@/message-stub';
+
+<Meta title="Components/OzMessageStub/Overview"
+      component={OzMessageStub}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzMessageStub
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=4336%3A5798)
+
+## Описание
+
+Дисклеймер (заголовок, подзаголовок) с двумя темами (`info`, `warning`) и возможностью отобразить иконку.
+Отрисовать кнопку можно через передачу props (`:buttonText`, `:buttonTheme`, `@clickButton`) или через передачу
+кнопки в `slot="button"`.
+
+**ВНИМАНИЕ!**
+Текущее поведение по-умолчанию для компонента: не рисовать иконку, если не передана тема.
+
+## Пример
+
+### Текст
+
+#### С заголовком
+
+`title`
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--title"/>
+</Canvas>
+
+#### С подзаголовком
+
+`subtitle`
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--subtitle"/>
+</Canvas>
+
+#### С кнопкой
+
+`button-text`
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--button-text"/>
+</Canvas>
+
+### Темы
+
+`theme`
+
+#### warning
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--theme-warning"/>
+</Canvas>
+
+#### info
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--theme-info"/>
+</Canvas>
+
+### Иконка
+
+`icon`
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--icon"/>
+  <Story id="components-ozmessagestub-stories--icon-color"/>
+</Canvas>
+
+
+### Слоты
+
+#### button
+
+<Canvas>
+  <Story id="components-ozmessagestub-stories--slot-button"/>
+</Canvas>

@@ -1,0 +1,111 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import ozPriceWithTitle from '@/price-with-title';
+
+<Meta title="Components/OzPriceWithTitle/Overview"
+      component={ozPriceWithTitle}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPriceWithTitle
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=5693%3A0)
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/price#pricewithtitle-atom)
+
+## Описание
+
+Компонент для отображения кредитной цены.
+
+## Примеры
+
+### По умолчанию
+
+По умолчанию цена имеет стиль `STYLE_TYPE_MEDIUM`.
+Пропс `price` является обязательным.
+Фон по умолчанию имеет цвет `ozCredit`, но его можно менять, прокинув параметр `backgroundColor`
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--default" />
+</Canvas>
+
+###   Title
+
+Справа от цены можно допавить подпись, передав ее в параметр `title`. По умолчанию, цвет `ozTextSecondary`
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--with-title" />
+</Canvas>
+
+### Цвет
+
+С помощью параметров `priceColor` и `titleColor` можно менять цвет цены и подписи.
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--color" />
+</Canvas>
+
+### Градиентный фон
+
+С помощью параметров `gradientBackgroundColor` можно проставить фон в градиентный.
+```json
+{
+  "startColor": "#FFB74B",
+  "endColor": "#FF2F6D",
+}
+```
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--gradient-bg" />
+</Canvas>
+
+
+### Зачеркивание title
+
+С помощью параметров `strikethroughColor` можно зачеркнуть title указанным цветом.
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--strikethrough-color" />
+</Canvas>
+
+### Размеры
+
+Размер задается параметром `theme`
+
+#### L (`STYLE_TYPE_LARGE`)
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--theme-l" />
+  <Story id="components-ozpricewithtitle-stories--with-title-theme-l" />
+</Canvas>
+
+#### ML (`STYLE_TYPE_MEDIUM_LARGE`)
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--theme-ml" />
+  <Story id="components-ozpricewithtitle-stories--with-title-theme-ml" />
+</Canvas>
+
+#### M (`STYLE_TYPE_MEDIUM`)
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--theme-m" />
+  <Story id="components-ozpricewithtitle-stories--with-title-theme-m" />
+</Canvas>
+
+#### S (`STYLE_TYPE_SMALL`)
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--theme-s" />
+  <Story id="components-ozpricewithtitle-stories--with-title-theme-s" />
+</Canvas>
+
+#### XS (`STYLE_TYPE_X_SMALL`)
+
+<Canvas>
+  <Story id="components-ozpricewithtitle-stories--theme-xs" />
+  <Story id="components-ozpricewithtitle-stories--with-title-theme-xs" />
+</Canvas>

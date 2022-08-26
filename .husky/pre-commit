@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Add here scripts that could change files and add to git before commit
+# Also they should be fast for preventing users skipping them
+if [ -t 1 ]; then
+  exec < /dev/tty
+fi
+
+yarn lint-staged
+yarn check:version

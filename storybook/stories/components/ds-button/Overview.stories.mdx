@@ -1,0 +1,281 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsButton from '@/ds-button';
+
+<Meta title="Components/DsButton/Overview"
+      component={DsButton}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsButton
+
+[Дизайн](https://www.figma.com/file/X1XPIwZy76RLSQWt72yhFj/%F0%9F%92%A0-Buttons-%7C-Components?node-id=848%3A16315)
+
+## Описание
+
+Компонент кнопки.
+
+## Примеры
+
+### По умолчанию
+
+- `title` - текст кнопки
+- `theme` - тема кнопки (по умолчанию `actionPrimary`)
+- `size` - размер кнопки (по умолчанию `500`)
+- `leftIcon` и `rightIcon` - иконки слева и справа от текста (использовать можно любые иконки размеров `m` и `s`(у размера `400`) из библиотеки [fe-icons](http://icons.prod.a.o3.ru/?path=/story/icon--all-icons))
+- `subtitle` - дополнительная информация под текстом кнопки
+- `label` - дополнительная информация справа от текста кнопки
+- `count` - значение каунтера, если кнопка квадратная, то отображается иконка вместо значения.
+
+<Canvas isColumn>
+  <Story id="components-dsbutton-stories--default"/>
+  <Story id="components-dsbutton-stories--left-icon"/>
+  <Story id="components-dsbutton-stories--right-icon"/>
+  <Story id="components-dsbutton-stories--subtitle"/>
+  <Story id="components-dsbutton-stories--label"/>
+  <Story id="components-dsbutton-stories--counter"/>
+</Canvas>
+
+### Fill
+Если передать пропс `isFill`, то кнопка растянется на ширину контейнера. По умолчанию, она подстраивается под содержимое.
+
+<Canvas>
+  <Story id="components-dsbutton-stories--fill-container"/>
+</Canvas>
+
+### Size
+
+У кнопки есть четыре варианта размера: `400`, `500`, `600` и `700`. По умолчанию ставится размер `500`.
+Если у кнопки размер `400`, то `subtitle` не отображается. Так же в размерах `600` и `700` выделяется `label`, добавляется фон и отступы.
+<Canvas isColumn>
+  <Story id="components-dsbutton-stories--size-400"/>
+  <Story id="components-dsbutton-stories--size-500"/>
+  <Story id="components-dsbutton-stories--size-600"/>
+  <Story id="components-dsbutton-stories--size-700"/>
+</Canvas>
+
+### Square
+
+Если передать пропс `isSquare`, кнопка будет фиксированной ширины и высоты, отображаться будет только одна из иконок (`leftIcon` приоритетнее).
+
+<Canvas isColumn>
+  <Story id="components-dsbutton-stories--size-400-square"/>
+  <Story id="components-dsbutton-stories--size-500-square"/>
+  <Story id="components-dsbutton-stories--size-600-square"/>
+  <Story id="components-dsbutton-stories--size-700-square"/>
+</Canvas>
+
+### Loader
+
+Кнопка загрузки не кликабельна. Сохраняет размер, как если бы в ней содержался контент или может быть квадратной.
+
+<Canvas columns={2}>
+  <Story id="components-dsbutton-stories--size-400-loader"/>
+  <Story id="components-dsbutton-stories--loader-size-400-square"/>
+  <Story id="components-dsbutton-stories--size-500-loader"/>
+  <Story id="components-dsbutton-stories--loader-size-500-square"/>
+  <Story id="components-dsbutton-stories--size-600-loader"/>
+  <Story id="components-dsbutton-stories--loader-size-600-square"/>
+  <Story id="components-dsbutton-stories--size-700-loader"/>
+  <Story id="components-dsbutton-stories--loader-size-700-square"/>
+</Canvas>
+
+### Disable wrapper
+
+Пропс `disableWrapper` отвечает за отключение обертки у кнопки (фон и внутренние отступы).
+Так же в данном режиме не отображается `subtitle` и фон у `label`.
+
+** ❗❗❗ ВАЖНО:** *Не все темы можно использовать с данным пропсом. В разделе Themes показаны все возможные варианты*
+
+<Canvas>
+  <Story id="components-dsbutton-stories--theme-action-secondary-disable-wrapper"/>
+</Canvas>
+
+### Themes
+
+Для некоторых примеров добавлен темный фон, так как данные кнопки используются в темной теме.
+
+#### Action Primary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-action-primary"/>
+  <Story id="components-dsbutton-stories--theme-action-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-action-primary"/>
+  <Story id="components-dsbutton-stories--loader-action-primary-square"/>
+</Canvas>
+
+#### Action Secondary
+
+<Canvas columns={3}>
+  <div>Default</div>
+  <div>Square</div>
+  <div>Disable Wrapper</div>
+  <Story id="components-dsbutton-stories--theme-action-secondary"/>
+  <Story id="components-dsbutton-stories--theme-action-secondary-square"/>
+  <Story id="components-dsbutton-stories--theme-action-secondary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--loader-action-secondary"/>
+  <Story id="components-dsbutton-stories--loader-action-secondary-square"/>
+  <Story id="components-dsbutton-stories--loader-action-secondary-disable-wrapper"/>
+</Canvas>
+
+#### Static Dark Primary
+
+<Canvas columns={3}>
+  <div>Default</div>
+  <div>Square</div>
+  <div>Disable Wrapper</div>
+  <Story id="components-dsbutton-stories--theme-static-dark-primary"/>
+  <Story id="components-dsbutton-stories--theme-static-dark-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-static-dark-primary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--loader-static-dark-primary"/>
+  <Story id="components-dsbutton-stories--loader-static-dark-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-static-dark-primary-disable-wrapper"/>
+</Canvas>
+
+#### Static Dark Secondary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-static-dark-secondary"/>
+  <Story id="components-dsbutton-stories--theme-static-dark-secondary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark-square"/>
+  <Story id="components-dsbutton-stories--loader-static-dark-secondary"/>
+  <Story id="components-dsbutton-stories--loader-static-dark-secondary-square"/>
+</Canvas>
+
+#### Static Light Primary
+
+<Canvas columns={3}>
+  <div>Default</div>
+  <div>Square</div>
+  <div>Disable Wrapper</div>
+  <Story id="components-dsbutton-stories--theme-static-light-primary"/>
+  <Story id="components-dsbutton-stories--theme-static-light-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-static-light-primary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-dark-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--loader-static-light-primary"/>
+  <Story id="components-dsbutton-stories--loader-static-light-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-static-light-primary-disable-wrapper"/>
+</Canvas>
+
+#### Static Light Secondary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-static-light-secondary"/>
+  <Story id="components-dsbutton-stories--theme-static-light-secondary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-light"/>
+  <Story id="components-dsbutton-stories--theme-disabled-static-light-square"/>
+  <Story id="components-dsbutton-stories--loader-static-light-secondary"/>
+  <Story id="components-dsbutton-stories--loader-static-light-secondary-square"/>
+</Canvas>
+
+#### Accent Primary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-accent-primary"/>
+  <Story id="components-dsbutton-stories--theme-accent-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-accent-primary"/>
+  <Story id="components-dsbutton-stories--loader-accent-primary-square"/>
+</Canvas>
+
+#### Accent Secondary
+
+Тема `accentSecondary` всегда отображается без фона, паддингов, `subtitle` и фона у `label` (как с пропсом `disableWrapper`)
+
+<Canvas isColumn>
+  <Story id="components-dsbutton-stories--theme-accent-secondary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-accent-secondary"/>
+  <Story id="components-dsbutton-stories--loader-accent-secondary"/>
+</Canvas>
+
+#### Neutral Primary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-neutral-primary"/>
+  <Story id="components-dsbutton-stories--theme-neutral-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-neutral-primary"/>
+  <Story id="components-dsbutton-stories--loader-neutral-primary-square"/>
+</Canvas>
+
+#### Neutral Secondary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-neutral-secondary"/>
+  <Story id="components-dsbutton-stories--theme-neutral-secondary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-neutral-secondary"/>
+  <Story id="components-dsbutton-stories--loader-neutral-secondary-square"/>
+</Canvas>
+
+#### Negative Secondary
+
+<Canvas columns={3}>
+  <div>Default</div>
+  <div>Square</div>
+  <div>Disable Wrapper</div>
+  <Story id="components-dsbutton-stories--theme-negative-secondary"/>
+  <Story id="components-dsbutton-stories--theme-negative-secondary-square"/>
+  <Story id="components-dsbutton-stories--theme-negative-secondary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-disable-wrapper"/>
+  <Story id="components-dsbutton-stories--loader-negative-secondary"/>
+  <Story id="components-dsbutton-stories--loader-negative-secondary-square"/>
+  <Story id="components-dsbutton-stories--loader-negative-secondary-disable-wrapper"/>
+</Canvas>
+
+#### Video Primary
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-video-primary"/>
+  <Story id="components-dsbutton-stories--theme-video-primary-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary"/>
+  <Story id="components-dsbutton-stories--theme-disabled-primary-square"/>
+  <Story id="components-dsbutton-stories--loader-video-primary"/>
+  <Story id="components-dsbutton-stories--loader-video-primary-square"/>
+</Canvas>
+
+#### Transparent
+
+<Canvas columns={2}>
+  <div>Default</div>
+  <div>Square</div>
+  <Story id="components-dsbutton-stories--theme-transparent"/>
+  <Story id="components-dsbutton-stories--theme-transparent-square"/>
+  <Story id="components-dsbutton-stories--theme-disabled-transparent"/>
+  <Story id="components-dsbutton-stories--theme-disabled-transparent-square"/>
+  <Story id="components-dsbutton-stories--loader-transparent"/>
+  <Story id="components-dsbutton-stories--loader-transparent-square"/>
+</Canvas>

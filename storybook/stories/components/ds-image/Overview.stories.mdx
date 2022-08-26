@@ -1,0 +1,104 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsImage from '@/ds-image';
+
+<Meta title="Components/DsImage/Overview"
+      component={DsImage}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsImage
+
+## Описание
+
+Компонент изображения.
+
+Основные функции:
+
+- При пустом `src` или ошибке при загрузке по умолчанию устанавливает изображение "На фотосессии".
+- Позволяет указать явно набор возможных источников изображения для использования пользовательскими агентами (prop `srcset`).
+- Может сеттить атрибут `loading`, позволяющий современным браузерам запустить механиз ленивой загрузки (prop `lazy`).
+
+Дополнительные возможности:
+
+- `max-width` и `max-height` - позволяет ограничить максимальные размеры компонента
+- `no-ratio` - параметр для обертки `DsImageRatio`. Убирает некоторые стили из компонента, поэтому по дефолту `true`. В обертке устанавливается автоматически в зависимости от остальных пропсов
+- `use-cdn` - параметр, указывающий, что картинка из cdn ozon'a. Необходимо для модификации url
+- `is-square` - параметр, указывающий, что картинка квадратная
+- `size` - максимальный размер ширины или высоты картинки. Работает в связке с `useCdn`
+- `quality` - добавление параметра отвечающего за качество изображения. Работает в связке с `useCdn`
+- `image-grey` - позволяет задать серый фон для изображения.
+- `useWebP` - пропс для использования формата сжатия изображения
+- `disable-src-set` - пропс для отключения `srcset`
+
+### Примеры
+
+#### Пустой src или ошибка при загрузке
+
+При пустом `src` или ошибке при загрузке по умолчанию устанавливает изображение "На фотосессии".
+
+<Canvas>
+  <Story id="components-dsimage-stories--empty"/>
+</Canvas>
+
+#### Использование cdn
+
+`size` + `use-cdn`
+
+Если указывается `size` и `use-cdn`,
+тогда хелпер формирует урл для изображения для его ресайза на стороне nginx (например для увеличения в 2 раза, или наоборот намеренное уменьшение размера картинки до 700px)
+
+<Canvas>
+  <Story id="components-dsimage-stories--use-cdn"/>
+</Canvas>
+
+** ❗❗❗ ВАЖНО:** *Есть ограничение на размер изображения для ресайза.*
+*Изображения больше 33.2 мегапикселя возвращают ошибку `422 Source image resolution is too big`, в этом случае компонент img выдаст error при рендере фото и мы заменим его
+на дефолтное изображение "На фотосессии".*
+
+#### Использование Srcset
+
+Позволяет указать набор возможных источников изображения для использования пользовательскими агентами вручную
+
+Сравнение использования `srcset`, `size` + `use-cdn` и `disable-src-set`:
+
+<Canvas>
+  <Story id="components-dsimage-stories--srcset"/>
+  <Story id="components-dsimage-stories--use-cdn-like-srcset"/>
+  <Story id="components-dsimage-stories--disable-src-set"/>
+</Canvas>
+
+#### Ограничение ширины
+
+<Canvas>
+  <Story id="components-dsimage-stories--max-width"/>
+</Canvas>
+
+#### Ограничение высоты
+
+<Canvas>
+  <Story id="components-dsimage-stories--max-height"/>
+</Canvas>
+
+#### Ресайз по ширине
+
+<Canvas>
+  <Story id="components-dsimage-stories--scale-by-width"/>
+</Canvas>
+
+#### Ресайз по высоте
+
+<Canvas>
+  <Story id="components-dsimage-stories--scale-by-height"/>
+</Canvas>
+
+
+
+#### Квадратная картинка
+
+<Canvas>
+  <Story id="components-dsimage-stories--is-square"/>
+</Canvas>

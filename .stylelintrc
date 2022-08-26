@@ -1,0 +1,9 @@
+{
+  "extends": "@bx-fe/stylelint-config",
+  "rules": {
+    "selector-pseudo-class-no-unknown":  [
+      true,
+      { "ignorePseudoClasses": ["export", "global"] }
+    ]
+  }
+}

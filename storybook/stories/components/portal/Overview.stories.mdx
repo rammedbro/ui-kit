@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzPortal from '@/portal/index';
+
+<Meta title="Components/OzPortal/Overview"
+      component={OzPortal}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPortal
+
+## Описание
+
+Компонент `OzPortal` для рендеринга DOM вне компонента в любом месте документа.
+Содержимое `OzPortal` может отображаться внутри него самого, если `OzPortalTarget` не подключен и у `OzPortal` стоит атрибут `disabled` в значении `true`.
+Компонент из библиотеки [portal-vue.linusb.org](https://portal-vue.linusb.org/)
+
+<Canvas>
+  <Story id="components-ozportal-stories--default"/>
+</Canvas>

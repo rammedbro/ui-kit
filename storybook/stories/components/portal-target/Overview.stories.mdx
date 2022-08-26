@@ -1,0 +1,25 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzPortal from '@/portal/index';
+import OzPortalTarget from '@/portal/target';
+
+<Meta title="Components/OzPortalTarget/Overview"
+      component={OzPortalTarget}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPortalTarget
+
+## Описание
+
+Этот компонент является контейнером для любого контента, отправленного из компонента `OzPortal`.
+Он только отображает полученный контент и больше ничего не делает.
+
+Документация и описание api: [portal-vue.linusb.org/api/portal-target](https://portal-vue.linusb.org/api/portal-target.html)
+
+<Canvas>
+  <Story id="components-ozportaltarget-stories--default"/>
+</Canvas>

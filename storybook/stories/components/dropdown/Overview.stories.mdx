@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzDropdown from '@/dropdown';
+
+<Meta title="Components/OzDropdown/Overview"
+      component={OzDropdown}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzDropdown
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A66693)
+
+## Описание
+
+Компонент-контейнер выпадающего списка. По умолчанию текст в пунктах списка однострочный.
+
+Гибко настраивает отображение списка элементов:
+- `highlight-index` подсвечивает пункт списка
+- `selected-index` на выбранном пункте добавляет иконку-галочку
+- `dropdown-width` ограничивает ширину списка
+- `max-height` ограничивает максимальную высоту
+- `multiline-text` снимает ограничение однострочности
+- `show-empty-state` показывает стандартный пункт "Ничего не найдено" если список окажется пустым
+- `size` влиет на размер текста и отступы пунктов списка:
+  - `m`: { font-size: 14px; padding 6px; }
+  - `l`: { font-size: 16px; padding 12px; }
+- `padding-size` позволяет управлять отдельно отступами
+  - `m`: { padding 6px; }
+  - `l`: { padding 12px; }
+- `theme` задает тему
+  - `default` стандартная тема
+  - `emty` сбрасывает паддинг для option
+- `multiple` даёт возможность выбирать несколько пунктов из списка
+- `with-confirm` добавляет кнопку подтверждения выбора
+- `with-clean` даёт возможность сбросить свой выбор
+
+## Примеры
+
+<Canvas>
+  <Story id="components-ozdropdown-stories--size-m"/>
+</Canvas>
+
+[Больше примеров в Stories](./?path=/docs/components-ozdropdown-stories--default)

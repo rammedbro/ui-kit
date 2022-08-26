@@ -1,0 +1,55 @@
+publish:
+  stage: publish
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  when: on_success
+  dependencies:
+    - build:lib
+  script:
+    - export BLUEBIRD_DEBUG=0
+    - echo "registry=https://nexus.s.o3.ru/repository/npm-private//" > .npmrc
+    - echo "//nexus.s.o3.ru/repository/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
+    - echo "//nexus.s.o3.ru/repository/npm-private/:_authToken=${NPM_AUTH_TOKEN}" >> .npmrc
+    - node ./.o3/utils/publish.js
+    - node ./.o3/utils/reporter/publish-report.js
+  only:
+    - master
+
+write-bundle-size:
+  stage: publish
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  needs: ["build:lib"]
+  script:
+    - node ./.o3/utils/bundle-size/write.js
+  artifacts:
+    paths:
+      - badge.svg
+      - bundle_size_in_byte.txt
+  only:
+    - master
+
+e2e:merge-screenshots:
+  stage: publish
+  image: ${BUILDER_IMAGE_WITH_CACHE}
+  when: on_success
+  dependencies:
+    - install-dependencies
+  script:
+    - npx e2e-runner screenshots merge
+  only:
+    - master
+
+build image:deps:
+  extends: .containers.kaniko
+  stage: publish
+  dependencies:
+    - build:lib
+    - build:storybook
+  when: on_success
+  variables:
+    DOCKERFILE_PATH: ".o3/deploy/nodejs-deps/Dockerfile"
+    BUILD_DST: "$BUILDER_IMAGE_WITH_CACHE"
+  except:
+    - tags
+  allow_failure: true
+  only:
+    - master

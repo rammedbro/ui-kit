@@ -1,0 +1,90 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzPopover from '@/popover';
+
+<Meta title="Components/OzPopover/Overview"
+      component={OzPopover}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzPopover
+
+[Дизайн (в дизайне данный компонент называется Tooltips)](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=7167%3A6841)
+
+## Описание
+
+Компонент всплывающего окна-подсказки.
+
+## Примеры
+
+### Активация при наведении
+
+<Canvas>
+  <Story id="components-ozpopover-stories--trigger-hover"/>
+</Canvas>
+
+### Активация по клику
+
+<Canvas>
+  <Story id="components-ozpopover-stories--trigger-click"/>
+</Canvas>
+
+### Сторона появления
+
+<Canvas>
+  <Story id="components-ozpopover-stories--placement-left"/>
+  <Story id="components-ozpopover-stories--placement-right"/>
+</Canvas>
+
+### С разными padding
+
+<Canvas>
+  <Story id="components-ozpopover-stories--padding-size-m"/>
+  <Story id="components-ozpopover-stories--padding-size-l"/>
+</Canvas>
+
+### Ограничение максимальной высоты размерами окна
+
+<Canvas>
+  <Story id="components-ozpopover-stories--apply-max-size"/>
+</Canvas>
+
+### Ограничение максимальной высоты размерами окна (с отступом от края экрана)
+
+<Canvas>
+  <Story id="components-ozpopover-stories--apply-max-size-with-indent"/>
+</Canvas>
+
+### Отключенное состояние
+
+<Canvas>
+  <Story id="components-ozpopover-stories--disabled"/>
+</Canvas>
+
+### Тема
+
+<Canvas>
+  <Story id="components-ozpopover-stories--theme-dropdown"/>
+  <Story id="components-ozpopover-stories--theme-dropdown-menu"/>
+</Canvas>
+
+### Цвет темы
+
+#### light
+
+*Светлая тема компонента*
+
+<Canvas>
+  <Story id="components-ozpopover-stories--color-theme-light"/>
+</Canvas>
+
+#### dark
+
+*Тёмная тема компонента*
+
+<Canvas>
+  <Story id="components-ozpopover-stories--color-theme-dark"/>
+</Canvas>

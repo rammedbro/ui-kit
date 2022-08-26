@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzField from '@/field';
+
+<Meta title="Components/OzField/Overview"
+      component={OzField}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzField
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=11077%3A22397)
+
+## Описание
+
+Компонент представляет собой обертку для других компонентов (в первую очередь, для [поля ввода](./?path=/story/components-ozinput-overview--page)).
+Эта обертка умеет отображать следующие элементы:
+* заголовок (сверху)
+* список ошибок (снизу)
+
+## Примеры
+
+### С заголовком
+
+`label`
+
+<Canvas>
+  <Story id="components-ozfield-stories--label"/>
+</Canvas>
+
+### С ошибками
+
+`errors` - массив строк
+
+<Canvas>
+  <Story id="components-ozfield-stories--errors"/>
+</Canvas>

@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "node",
+      "webdriverio/async",
+      "@wdio/mocha-framework",
+      "expect-webdriverio",
+      "wdio-image-comparison-service"
+    ]
+  },
+  "include": [
+    "tests/e2e/**/*",
+    "global.d.ts",
+    "e2e.config.ts"
+  ]
+}

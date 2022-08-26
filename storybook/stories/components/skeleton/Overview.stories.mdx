@@ -1,0 +1,44 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzSkeleton from '@/tag';
+
+<Meta title="Components/OzSkeleton/Overview"
+      component={OzSkeleton}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzSkeleton
+
+## Описание
+
+Контейнер, который отображает скелет пока загружается контент.
+
+## Примеры
+
+### По умолчанию
+
+По умолчанию умеет высоту `height="300px"` и ширину родительского компонента.
+
+<Canvas>
+  <Story id="components-ozskeleton-stories--default"/>
+</Canvas>
+
+### Square
+
+При установке аргумента square в значение true, контейнер займет всю площадь родительскго компонента.
+
+<Canvas>
+  <Story id="components-ozskeleton-stories--square"/>
+</Canvas>
+
+### BoneHalf
+
+При установке аргумента boneHalf в значение true, ширина контейнер займет половину ширины родительскго компонента.
+
+<Canvas>
+  <Story id="components-ozskeleton-stories--bone-half"/>
+</Canvas>
+

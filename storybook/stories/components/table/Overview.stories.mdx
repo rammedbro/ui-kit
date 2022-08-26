@@ -1,0 +1,87 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTable from '@/table';
+
+<Meta title="Components/OzTable/Overview"
+      component={OzTable}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTable
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A75769)
+
+## Описание
+
+Компонент таблицы.
+
+## Примеры
+
+### По умолчанию
+
+<Canvas>
+  <Story id="components-oztable-stories--default"/>
+</Canvas>
+
+### Таблица без заголовка
+
+<Canvas>
+  <Story id="components-oztable-stories--hide-header"/>
+</Canvas>
+
+### Таблица с прилипающим заголовком
+
+<Canvas>
+  <Story id="components-oztable-stories--sticky-header"/>
+</Canvas>
+
+### Таблица с hover
+
+#### Горизонтальный
+
+<Canvas>
+  <Story id="components-oztable-stories--hover-horizontal"/>
+</Canvas>
+
+#### Вертикальный
+
+<Canvas>
+  <Story id="components-oztable-stories--hover-vertical"/>
+</Canvas>
+
+### Таблица с разными размерами отступа
+
+#### m
+
+<Canvas>
+  <Story id="components-oztable-stories--size-m"/>
+</Canvas>
+
+#### l
+
+<Canvas>
+  <Story id="components-oztable-stories--size-l"/>
+</Canvas>
+
+### Таблица на всю ширину
+
+<Canvas>
+  <Story id="components-oztable-stories--fill"/>
+</Canvas>
+
+### Слоты
+
+#### head
+
+<Canvas>
+  <Story id="components-oztable-stories--slot-head"/>
+</Canvas>
+
+#### cell
+
+<Canvas>
+  <Story id="components-oztable-stories--slot-cell"/>
+</Canvas>

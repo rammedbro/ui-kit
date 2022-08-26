@@ -1,0 +1,63 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsRadio from '@/ds-radio';
+
+<Meta title="Components/DsRadio/Overview"
+      component={DsRadio}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsRadio
+
+[Дизайн](https://www.figma.com/file/XXrT4o9qYaM6b4FEHoEuDJ/%F0%9F%92%A0-Comp.-%7C-Selection-Controls?node-id=2%3A4049)
+
+## Описание
+
+Компонент радио-кнопки. Редко используется одиночно. Обычно применяется в цикле.
+На состояния кнопки можно смотреть с точки зрения заполненности и с точки зрения интерактивности.
++ Заполненность (props "checked"):
+  * true - выбрана
+  * false - не выбрана
++ Интерактивность (props "disable"):
+  * true - неактивна
+  * false - активна
+
+Кнопка может иметь любую комбинацию состояний заполненности и интерактивности. Эти состояния — часть API, то есть кнопке можно сообщить извне, в какой паре состояний она находится.
+
+Активация пропа usedInMobWeb добавляет псевдоэлемент, отцентрированный посередине кнопки, с площадью 44*44px вне зависимости от размера самой кнопки, для увеличения площади таба (клика).
+
+## Примеры
+
+### Не выбрана (по умолчанию)
+
+<Canvas>
+  <Story id="components-dsradio-stories--default"/>
+</Canvas>
+
+### Выбрана
+
+`checked`
+
+<Canvas>
+  <Story id="components-dsradio-stories--status-checked"/>
+</Canvas>
+
+### Неактивна
+
+`disabled`
+
+<Canvas>
+  <Story id="components-dsradio-stories--state-disabled"/>
+</Canvas>
+
+### Размер 600
+
+`size`
+
+<Canvas>
+  <Story id="components-dsradio-stories--size-600"/>
+</Canvas>
+

@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/E2E тестирование/Локальное тестирование"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# E2E тестирование / Локальное тестирование
+
+**Содержание:**
++ [Сборка сценариев](#сборка-сценариев)
++ [Запуск сервера](#запуск-сервера)
++ [Запуск тестов](#запуск-тестов)
+  * [Выбор браузера](#выбор-браузера)
+  * [Скачивание скриншотов](#скачивание-скриншотов)
++ [Отчеты](#отчеты)
+<br/>
+
+## Сборка сценариев
+
+Выполняем команду `yarn e2e:build`. *Пересобирать компоненты нужно всякий раз после добавления/изменения сценариев.
+
+## Запуск сервера
+
+Выполняем команду `yarn e2e:start`, после чего в консоли будет выведен адрес. Переходим по этому адресу на страницу
+`/__tests__/`, где будут выведены все доступные сценарии.
+
+<img src="/img/introduction/e2e-testing/e2e-link-for-local-allure-report.png" alt="Ссылка на страницу с отчетами по тестированию" width="600"/>
+<br/>
+<img src="/img/introduction/e2e-testing/e2e-app-index.png" alt="" width="600" />
+
+Каждый конкретный сценарий компонента располагается на отдельной странице по пути
+`/__tests__/<COMPONENT_NAME>/<SCENARIO_INDEX>/`.
+
+<img src="/img/introduction/e2e-testing/e2e-app-component-scenario.png" alt="" width="600" />
+
+## Запуск тестов
+
+Выполняем команду `yarn e2e:test`.
+
+Для запуска тестов необходимо передать следующие `env` переменные:
+* `E2E_BROWSER_SERVICE` - указывает, какой сервис будет предоставлять нам браузеры для запуска тестов.
+В зависимости от сервиса могут потребоваться [дополнительные действия](#выбор-браузера).
+* `E2E_BROWSER_NAME` - указывает, в каком браузере будем запускать тесты.
+* `E2E_SUITE` - `suite`, который будем тестировать. Можно не передавать, тогда будут запущены все тесты.
+Список доступных можно посмотреть в конфиг файле `e2e.config.ts`
+* `E2E_COMPONENT` - имя компонента, который будем тестировать. *Нужен только для скриншот тестов*.
+
+### Выбор браузера
+
+#### Сервис driver
+
+Сервис предоставляет драйвера браузеров, запускаемые прямо на вашем компьютере.
+
+**Браузеры**:
+* `chrome`
+
+**Полезные ссылки**:
+* [Wdio chromedriver service](https://webdriver.io/docs/wdio-chromedriver-service)
+* [Capabilities](https://chromedriver.chromium.org/capabilities)
+
+#### Сервис browserstack
+
+Сервис удаленного тестирования приложений в различных браузерах и операционных системах.
+
+**Браузеры**:
+* `chrome`
+* `edge`
+* `firefox`
+* `ie`
+* `safari`
+
+**Полезные ссылки**:
+* [Wdio browserstack service](https://webdriver.io/docs/browserstack-service)
+* [Capabilities](https://www.browserstack.com/automate/capabilities?tag=selenium-4)
+* [Additional flags](https://www.browserstack.com/local-testing/binary-params)
+* [Multiple local connections](https://www.browserstack.com/docs/automate/selenium/manage-multiple-connections)
+
+#### Сервис moon
+
+Решение для организации ручного и автоматизированного тестирования веб-приложений в настольных
+и мобильных браузерах на основе протокола Selenium WebDriver, работающее в кластере Kubernetes или Openshift.
+
+Необходимо передать следующие `env` переменные:
+* `MOON_HOST` - `127.0.0.1`
+* `MOON_PORT` - `4444`
+
+**Требования**:
+* работающий кластер Kubernetes версии 1.13 и выше
+* установленная утилита [kubectl](https://kubernetes.io/ru/docs/tasks/tools/install-kubectl/)
+* установленная утилита [minikube](https://kubernetes.io/ru/docs/tasks/tools/install-minikube/)
+* запущенный через тоннель minikube [moon](https://aerokube.com/moon/latest/#install-minikube)
+
+**Браузеры**:
+* `chrome`
+* `microsoftedge`
+* `firefox`
+* `opera`
+* `safari`
+
+**Полезные ссылки**:
+* [Documentation](https://aerokube.com/moon/latest/#install-minikube)
+* [Документация](https://aerokube.ru/docs/main.pdf)
+* [Инструменты kubernetes](https://kubernetes.io/ru/docs/tasks/tools/)
+
+**Проблемы**:
+* [Не запускается туннель на macOS](https://github.com/kubernetes/minikube/issues/10085)
+
+### Скачивание скриншотов
+
+Выполняем команду `yarn e2e:s3`, после чего в консоли откроется интерактивный помощник для скачивания скриншотов из s3.<br/>
+
+Для доступа к s3 необходимо передать следующие `env` переменные (просить у администраторов ui-kit):
+* `S3_ACCESS_KEY`
+* `S3_SECRET_KEY`
+
+В завершении работы с помощником также необходимо будет указать путь по которому будут сохранены скриншоты,
+его можно узнать в файле `e2e.config.ts` в опции `screenshots.comparison.screenshotPath`.
+
+
+## Отчеты
+
+Генерация отчетов о результатах локальных тестов выполняется командой `yarn e2e:allure`, после чего в браузере
+автоматически откроется страница с отчетами.
+
+*[Подробнее об инструменте создания и настройке отчетов Allure Reporter](./?path=/story/introduction-e2e-тестирование-отчеты--page)

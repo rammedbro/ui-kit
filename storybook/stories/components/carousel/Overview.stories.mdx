@@ -1,0 +1,116 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzCarousel from '@/carousel/carousel-entry';
+
+<Meta title="Components/OzCarousel/Overview"
+      component={OzCarousel}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzCarousel
+
+[Дизайн кнопок](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A55643)
+
+[Дизайн сетки](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=16804%3A70593)
+
+## Описание
+
+Компонент карусели.
+Используется в полках с товарами, в виджетах с прокруткой,
+для отображения изображений товара, фотографий в отзывах, и подобное.
+
+## Примеры
+
+### По умолчанию
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--default"/>
+</Canvas>
+
+### Вертикальное отображение
+
+`layout`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--layout-vertical"/>
+</Canvas>
+
+### Пагинация
+
+`pagination`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--pagination"/>
+</Canvas>
+
+### Оставляем только скролл
+
+`only-scroll`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--only-scroll"/>
+</Canvas>
+
+### Количество одновременно переключаемых слайдов
+
+`slidingCount`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--sliding-count"/>
+</Canvas>
+
+### Скорость перехода
+
+`transition`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--transition"/>
+</Canvas>
+
+### Зацикливание
+
+`loop` _(deprecated)_
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--loop"/>
+</Canvas>
+
+### Выбранный слайд по центру
+
+`centered`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--centered"/>
+</Canvas>
+
+### Доп. элементы, не влияющие на работу карусели
+
+`recursive`
+
+С данным пропом поиск OzCarouselItem в слоте будет происходить не только по первому уровню вложенности, а рекурсивно.
+Это позволяет оборачивать элементы карусели в стилизующие/группирующие обертки и добавлять элементы, не влияющие на логику слайдов
+
+Ожидается, что элементы выстроены в линию (горизонтальную или вертикальную в соответствие с пропом layout)
+
+Стоит быть внимательным со схлопывающимся отступами OzCarouselItem и с отступами применяемыми НЕ к OzCarouselItem (относится только к отступам в плоскоти карусели, например, вертикальные отступы с layout: "horizontal" ни на что влиять не будут). При наличии таких отступов позиционирование карусели будет работать неправильно
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--recursive"/>
+</Canvas>
+
+### Тема
+
+`theme`
+
+1. `rect-material`
+2. `dark-rect`
+3. `material-inside`
+
+<Canvas>
+  <Story id="components-ozcarousel-stories--theme-rect-material"/>
+  <Story id="components-ozcarousel-stories--theme-dark-rect"/>
+  <Story id="components-ozcarousel-stories--theme-material-inside"/>
+</Canvas>

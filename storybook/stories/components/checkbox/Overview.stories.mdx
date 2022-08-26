@@ -1,0 +1,92 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzCheckbox from '@/avatar';
+
+<Meta title="Components/OzCheckbox/Overview"
+      component={OzCheckbox}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzCheckbox
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=4235%3A7659)
+
+## Описание
+
+Компонент чекбокса. Имеет две вариации отображения: в видже классической галочки (_checkbox_) или переключателя (_toggle_).
+
+**ВАЖНО!**: сейчас размер _checkbox_ зависит от media queries, и на мобильных разрешениях имеет размеры 24х24, а на десктопных - 16х16
+
+## Примеры
+
+### Тема
+
+`theme`
+
+`checkbox` > `toggle`
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--checkbox"/>
+  <Story id="components-ozcheckbox-stories--toggle"/>
+</Canvas>
+
+### Отключенный
+
+`disabled`
+
+`checkbox` > `toggle`
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--checkbox-disabled"/>
+  <Story id="components-ozcheckbox-stories--toggle-disabled"/>
+</Canvas>
+
+### Расположение контрола
+
+`control-position`
+
+#### theme checkbox
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--checkbox-control-position-left"/>
+  <Story id="components-ozcheckbox-stories--checkbox-control-position-right"/>
+</Canvas>
+
+#### theme toggle
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--toggle-control-position-left"/>
+  <Story id="components-ozcheckbox-stories--toggle-control-position-right"/>
+</Canvas>
+
+### Индикатор наличия ошибок
+
+`has-error`
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--checkbox-has-error"/>
+  <Story id="components-ozcheckbox-stories--toggle-has-error"/>
+</Canvas>
+
+### Вертикальное выравнивание
+
+`vertical-align`
+
+#### theme checkbox
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--checkbox-label-vertical-align-start"/>
+  <Story id="components-ozcheckbox-stories--checkbox-label-vertical-align-end"/>
+  <Story id="components-ozcheckbox-stories--checkbox-label-vertical-align-center"/>
+</Canvas>
+
+#### theme toggle
+
+<Canvas>
+  <Story id="components-ozcheckbox-stories--toggle-label-vertical-align-start"/>
+  <Story id="components-ozcheckbox-stories--toggle-label-vertical-align-end"/>
+  <Story id="components-ozcheckbox-stories--toggle-label-vertical-align-center"/>
+</Canvas>

@@ -1,0 +1,59 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTransition from '@/transition';
+
+<Meta title="Components/OzTransition/Overview"
+      component={OzTransition}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTransition
+
+## Описание
+
+Используется для плавного исчезновения контента.
+
+## Примеры
+
+### Скорость появления
+
+#### Медленно
+
+<Canvas>
+  <Story id="components-oztransition-stories--speed-slow" />
+</Canvas>
+
+#### Быстро
+
+<Canvas>
+  <Story id="components-oztransition-stories--speed-fast" />
+</Canvas>
+
+### Задержка появления
+
+#### Короткая
+
+<Canvas>
+  <Story id="components-oztransition-stories--delay-short" />
+</Canvas>
+
+#### Длинная
+
+<Canvas>
+  <Story id="components-oztransition-stories--delay-long" />
+</Canvas>
+
+#### Без задержки
+
+<Canvas>
+  <Story id="components-oztransition-stories--delay-none" />
+</Canvas>
+
+### С затуханием, но без анимации движения
+
+<Canvas>
+  <Story id="components-oztransition-stories--only-fade" />
+</Canvas>

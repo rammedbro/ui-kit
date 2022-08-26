@@ -1,0 +1,93 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzStockBar from '@/stock-bar';
+
+<Meta title="Components/OzStockBar/Overview"
+      component={OzStockBar}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzStockBar
+
+[Контракт](https://gitlab.ozon.ru/bx/contracts/-/tree/master/proto/atom/mobile/progressBar)
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/03.-Core-Apps-Lib?node-id=5685%3A5841)
+
+## Описание
+
+Компонент для отображения кол-ва оставшегося акционного товара. Настраивается пропсами:
+
+- `percent` задает значение для отборажения на stockBar
+- `stockBarColor` цвет заполненной части stockBar, по умолчанию `ozAccentAlert`
+- `stockBarBackgroundColor` цвет незаполненной части stockBar, по умолчанию `ozBGQuaternary`
+- `stockBarBackgroundAlpha` Прозрачность незаполненной части, по умолчанию `1`
+- `theme` тема, определяющая размер текста, а также stockBar (если для `isFullWidth` не задано `true`)
+- `isFullWidth` Стокбар на всю ширину блока, по умолчанию `false`
+- `theme` тема, определяющая размер текста, а также stockBar (если для `fill` не задано `true`)
+- `text` текст над stockBar
+- `textColor` цвет текста, по умолчанию `ozTextPrimary`
+
+## Примеры
+
+### По умолчанию
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--default" />
+</Canvas>
+
+### Size S
+
+Для главной страницы на mobile/mobweb используется тема THEME_TYPE_SMALL
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--theme-s" />
+</Canvas>
+
+### Size M
+
+По умолчанию используется тема THEME_TYPE_MEDIUM
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--theme-m" />
+</Canvas>
+
+### Цвет текста
+
+По умолчанию цвет текста - `ozTextPrimary`
+Когда осталось мало товара, следует использовать цвет `ozAccentAlert`
+Когда товара не осталось совсем, нужно использовать цвет `ozTextSecondary`
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--few-product" />
+</Canvas>
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--no-product" />
+</Canvas>
+
+### Настройки бара
+
+#### Цвет
+
+По умолчанию цвет незаполненной части - `ozTextPrimary` и его коэффициент непрозрачности равен 1 (возможные значения: (0, 1]).
+По умолчанию цвет заполненной части - `ozAccentAlert`.
+Для их изменения необходимо передать свои значения цветов в `stockBarBackgroundColor` и/или `stockBarColor` соответственно.
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--bar-colors" />
+</Canvas>
+
+#### Длина
+
+По умолчанию ограничивается выбранной темой (`theme`):
+* THEME_TYPE_SMALL - `101px`
+* THEME_TYPE_MEDIUM - `148px`
+
+`isFullWidth` равный `true` снимает ограничения ширины, завязанные на выбранный `theme`, позволяя стокбару занимать всю ширину контейнера.
+
+<Canvas>
+  <Story id="components-ozstockbar-stories--is-full-width" />
+</Canvas>

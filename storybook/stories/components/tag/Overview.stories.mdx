@@ -1,0 +1,99 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import OzTag from '@/tag';
+
+<Meta title="Components/OzTag/Overview"
+      component={OzTag}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# OzTag
+
+[Дизайн](https://www.figma.com/file/F7liVaQiHzkojA2NM1ztIJ/02.-Core---UI-Components?node-id=67%3A1126)
+
+## Описание
+
+Компонент представляет собой button, но может быть использован как ссылка если в компонент передан `href`. Тажке компонент можно дополнить `counter`'ом, который будет отображен рядом с `label`'ом. Компонент `emit`'ит события `click` при клике на `tag`. И `emit`'ит события `clickButtonClose` при клике на крестик.
+
+## Примеры
+
+### Primary
+
+<Canvas>
+  <Story id="components-oztag-stories--primary"/>
+  <Story id="components-oztag-stories--primary-counter"/>
+  <Story id="components-oztag-stories--primary-secondary-disabled"/>
+  <Story id="components-oztag-stories--primary-and-link"/>
+  <Story id="components-oztag-stories--primary-close-button"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-oztag-stories--primary-icon-close"/>
+  <Story id="components-oztag-stories--primary-text-icon"/>
+  <Story id="components-oztag-stories--primary-text-icon-close"/>
+  <Story id="components-oztag-stories--primary-text-icon-counter-close"/>
+</Canvas>
+
+
+### Secondary
+
+<Canvas>
+  <Story id="components-oztag-stories--secondary"/>
+  <Story id="components-oztag-stories--secondary-counter"/>
+  <Story id="components-oztag-stories--primary-secondary-disabled"/>
+  <Story id="components-oztag-stories--secondary-and-link"/>
+  <Story id="components-oztag-stories--secondary-close-button"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-oztag-stories--secondary-icon-close"/>
+  <Story id="components-oztag-stories--secondary-text-icon"/>
+  <Story id="components-oztag-stories--secondary-text-icon-close"/>
+  <Story id="components-oztag-stories--secondary-text-icon-counter-close"/>
+</Canvas>
+
+### Secondary link
+
+<Canvas>
+  <Story id="components-oztag-stories--secondary-link"/>
+  <Story id="components-oztag-stories--secondary-link-counter"/>
+  <Story id="components-oztag-stories--primary-secondary-disabled"/>
+  <Story id="components-oztag-stories--secondary-link-and-link"/>
+  <Story id="components-oztag-stories--secondary-link-close-button"/>
+</Canvas>
+
+<Canvas>
+  <Story id="components-oztag-stories--secondary-link-icon-close"/>
+  <Story id="components-oztag-stories--secondary-link-text-icon"/>
+  <Story id="components-oztag-stories--secondary-link-text-icon-close"/>
+  <Story id="components-oztag-stories--secondary-link-text-icon-counter-close"/>
+</Canvas>
+
+### White
+
+<Canvas style={{ background: '#707f8d'}}>
+  <Story id="components-oztag-stories--white"/>
+  <Story id="components-oztag-stories--white-counter"/>
+  <Story id="components-oztag-stories--white-disabled"/>
+  <Story id="components-oztag-stories--white-and-link"/>
+  <Story id="components-oztag-stories--white-close-button"/>
+</Canvas>
+
+<Canvas style={{ background: '#707f8d'}}>
+  <Story id="components-oztag-stories--white-icon-close"/>
+  <Story id="components-oztag-stories--white-text-icon"/>
+  <Story id="components-oztag-stories--white-text-icon-close"/>
+  <Story id="components-oztag-stories--white-text-icon-counter-close"/>
+</Canvas>
+
+### Deprecated themes
+
+#### Delivery and Secondary dark
+
+<Canvas>
+  <Story id="components-oztag-stories--delivery"/>
+  <Story id="components-oztag-stories--secondary-dark"/>
+</Canvas>

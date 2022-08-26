@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Add here scripts that could prevent getting invalid code to repo
+yarn types
+yarn unit:test:changed

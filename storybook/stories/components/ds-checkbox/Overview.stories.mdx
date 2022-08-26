@@ -1,0 +1,66 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import DsCheckbox from '@/ds-checkbox';
+
+<Meta title="Components/DsCheckbox/Overview"
+      component={DsCheckbox}
+      parameters={{
+        previewTabs: {
+          canvas: { hidden: true },
+        },
+      }}
+/>
+
+# DsCheckbox
+
+[Дизайн](https://www.figma.com/file/XXrT4o9qYaM6b4FEHoEuDJ/%F0%9F%92%A0-Comp.-%7C-Selection-Controls?node-id=2%3A4049)
+
+## Описание
+
+Компонент чекбокса. На состояния чекбокса можно смотреть с точки зрения заполненности и с точки зрения интерактивности.
++ Заполненность:
+  * props "checked":
+    + true — не заполнен
+    + false — заполнен
+  * props "indeterminate" (доступен для чекбокса, объединяющего группу чекбоксов, если часть внутренних чекбоксов checked = true, а часть checked = false):
+    + true — группа заполнена частично
+    + false - группа не заполнена
++ Интерактивность (props "disabled"):
+  * true - отключён
+  * false - включён
+
+Чекбокс может иметь любую комбинацию состояний заполненности и интерактивности. Эти состояния — часть API, то есть чекбоксу можно сообщить извне, в какой паре состояний он находится.
+
+Активация пропа usedInMobWeb добавляет псевдоэлемент, отцентрированный посередине чекбокса, с площадью 44*44px вне зависимости от размера самого чекбокса, для увеличения площади таба (клика).
+
+## Примеры
+
+### Пустой (по умолчанию)
+
+<Canvas>
+  <Story id="components-dscheckbox-stories--default"/>
+</Canvas>
+
+### Отмеченный
+
+`checked`
+
+<Canvas>
+  <Story id="components-dscheckbox-stories--status-checked"/>
+</Canvas>
+
+### Отключённый
+
+`disabled`
+
+<Canvas>
+  <Story id="components-dscheckbox-stories--state-disabled"/>
+</Canvas>
+
+### Размер 600
+
+`size`
+
+<Canvas>
+  <Story id="components-dscheckbox-stories--size-600"/>
+</Canvas>
+

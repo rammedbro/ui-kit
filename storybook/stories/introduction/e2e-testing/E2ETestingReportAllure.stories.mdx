@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Introduction/E2E тестирование/Отчеты"
+      parameters={{
+        previewTabs: {
+          canvas: {
+            hidden: true,
+          },
+        },
+      }} />
+
+# E2E тестирование / Отчеты
+
+**Содержание:**
+
++ [Рекомендации по настройке](#рекомендации-по-настройке)
+  * [Пример использования](#пример-использования)
++ [Полезные ссылки](#полезные-ссылки)
+
+<br/>
+
+Для генерации отчетов используется фреймворк [Allure Reporter](https://webdriver.io/docs/allure-reporter). <br/>
+
+> Инструмент для создания отчетов о тестировании, который не только показывает очень краткое представление того,
+что было протестировано в удобной форме веб-отчета, но и позволяет каждому, кто участвует в процессе разработки,
+извлекать максимум полезной информации из повседневного выполнения тесты.
+
+## Рекомендации по настройке
+
+Настоятельно рекомендуется разбивать ваши тесты на шаги и оборачивать их в конструкцию `startStep`/`endStep `, дополняя
+другими методами **Allure Reporter** (например, `addAttachment`). Это позволит детальнее отобразить действия, которые
+совершает тест, а также точнее обнаружить место ошибки, т.к. ошибка теперь будет связана с шагом, на котором она произошла.
+
+### Пример использования:
+
+```ts
+AllureReporter.startStep('Checking app exists in DOM');
+
+const app = $('#app');
+expect(app).toExist();
+
+AllureReporter.endStep();
+
+AllureReporter.startStep('Checking server errors');
+
+const serverErrors = [];
+app.$$('#server-errors').forEach(el => {
+  const json = el.getText();
+  serverErrors.push(...JSON.parse(json));
+});
+AllureReporter.addAttachment('Errors', JSON.stringify(serverErrors, null, 2), 'text/json');
+expect(serverErrors.length).toEqual(0);
+
+AllureReporter.endStep();
+```
+
+На скриншоте ниже видны детальные шаги, которые совершает тест, а также точное место, где произошла ошибка:
+<img src="/img/introduction/e2e-testing/allure-reporter-recommendation.png" alt="Детальные шаги, которые совершает тест" height="400" />
+
+## Полезные ссылки
+* [Отчеты ui-kit](http://allure-ee.allure.prod.s.o3.ru/project/50/dashboards)
+* [allurectl](https://docs.qameta.io/allure-testops/integration/import-commandline/)
